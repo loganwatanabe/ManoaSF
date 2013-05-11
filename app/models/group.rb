@@ -8,26 +8,30 @@ class Group < ActiveRecord::Base
 
 
 	#relationships
-
-
-
-
+	has_many :participants
+	belongs_to :leader
+	has_many :yummy_tummy_day_orders, :through => :participants
 
 
 	#scopes
-
-
-
+	scope :by_number, order('number')
+	scope :for_rotation, lambda{|rotation| where("rotation = ? ", rotation) }
 
 
 	#validations
+	validates_presence_of :leader_id, :number
+  	validates_numericality_of :leader_id, :only_integer => true, :greater_than => 0
+  	validates_numericality_of :number, :only_integer => true, :greater_than_or_equal_to => 0, :less_than => 18
+  	validates_numericality_of :rotation, :only_integer => true, :greater_than => 0
 
-
-
+  		#this should only be used for checking children, not junior leaders [possibly unecessary]
+	validates_numericality_of :min_grade, :only_integer => true, :greater_than_or_equal_to => 0
+	validates_numericality_of :max_grade, :only_integer => true, :greater_than_or_equal_to => :min_grade
+	validates_numericality_of :min_age, :only_integer => true, :greater_than_or_equal_to => 3
+	validates_numericality_of :max_age, :only_integer => true, :greater_than_or_equal_to => :min_age
 
 
 	#methods
-
 
 
 

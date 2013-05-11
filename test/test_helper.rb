@@ -30,9 +30,19 @@ class ActiveSupport::TestCase
 
     # Context for group
   def create_group_context
+    @group1=FactoryGirl.create(:group, :leader => @monica)
+    @group2=FactoryGirl.create(:group, :leader => @jp)
+    @group3=FactoryGirl.create(:group, :leader => @bt, :rotation => 2)
+    @group4=FactoryGirl.create(:group, :leader => @logan, :rotation => 2)
+    @group5=FactoryGirl.create(:group, :leader => @nick, :rotation => 3)
   end
   
   def remove_group_context
+    @group1.destroy
+    @group2.destroy
+    @group3.destroy
+    @group4.destroy
+    @group5.destroy
   end
 
 

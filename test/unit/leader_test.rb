@@ -40,7 +40,7 @@ class LeaderTest < ActiveSupport::TestCase
   should_not allow_value(nil).for(:date_of_birth)
   
 
-  context "Creating a student context" do
+  context "Creating a leader context" do
 	    setup do 
 	      create_leader_context
 	    end
@@ -50,7 +50,8 @@ class LeaderTest < ActiveSupport::TestCase
 	    end
 
 	    should "allow an existing leader to be edited" do
-
+	    	@logan.nickname = "Logz"
+	    	assert @logan.valid?
 	    end
 	    
 	    should "have working name method" do 

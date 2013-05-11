@@ -33,7 +33,7 @@ class Group < ActiveRecord::Base
 
 	#methods
 
-
+	#get all meals for a group
 
 
 

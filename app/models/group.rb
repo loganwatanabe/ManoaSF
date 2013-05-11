@@ -25,10 +25,10 @@ class Group < ActiveRecord::Base
   	validates_numericality_of :rotation, :only_integer => true, :greater_than => 0
 
   		#this should only be used for checking children, not junior leaders [possibly unecessary]
-	validates_numericality_of :min_grade, :only_integer => true, :greater_than_or_equal_to => 0
-	validates_numericality_of :max_grade, :only_integer => true, :greater_than_or_equal_to => :min_grade
-	validates_numericality_of :min_age, :only_integer => true, :greater_than_or_equal_to => 3
-	validates_numericality_of :max_age, :only_integer => true, :greater_than_or_equal_to => :min_age
+	validates_numericality_of :min_grade, :only_integer => true, :greater_than_or_equal_to => 0, :allow_nil => true
+	validates_numericality_of :max_grade, :only_integer => true, :greater_than_or_equal_to => :min_grade, :allow_nil => true
+	validates_numericality_of :min_age, :only_integer => true, :greater_than_or_equal_to => 3, :allow_nil => true
+	validates_numericality_of :max_age, :only_integer => true, :greater_than_or_equal_to => :min_age, :allow_nil => true
 
 
 	#methods

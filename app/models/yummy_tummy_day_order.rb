@@ -3,7 +3,7 @@ class YummyTummyDayOrder < ActiveRecord::Base
 
 
 	#callbacks
-
+	#before_save :calculate_total_cost
 
 
 	#relationships
@@ -38,8 +38,13 @@ class YummyTummyDayOrder < ActiveRecord::Base
 
 	end
 
-	def order_for_week(number)
+	def quantity_for_week?(number)
 
+	end
+
+	private
+
+	def calculate_total_cost
 	end
 
 

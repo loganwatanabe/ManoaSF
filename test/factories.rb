@@ -4,7 +4,7 @@ FactoryGirl.define do
     first_name "Logan"
     last_name "Watanabe"
     nickname nil
-    date_of_birth Chronic.parse('10/26/992').to_date
+    date_of_birth 20.years.ago.to_date
     notes nil
     phone "808-497-7749"
     specialty "fitness"

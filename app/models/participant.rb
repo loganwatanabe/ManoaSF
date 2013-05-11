@@ -8,6 +8,7 @@ class Participant < ActiveRecord::Base
 
 	#relationships
 	belongs_to :group
+	#belongs_to :leader, :through => :group
 	has_many :contacts
 	has_one :yummy_tummy_day_order
 	has_many :orders, :through => :yummy_tummy_day_order

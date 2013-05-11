@@ -4,7 +4,7 @@ class LeaderTest < ActiveSupport::TestCase
 
 # Test relationships
   should have_one(:group)
-  should have_many(:participants).through(:group)
+  # should have_many(:participants).through(:groups)
   
   # Test basic validations
   should validate_presence_of(:first_name)

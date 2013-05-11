@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
 
 	#relationships
 	belongs_to :yummy_tummy_day_order
-	belongs_to :participant, :through => :yummy_tummy_day_order
+	#belongs_to :participant, :through => :yummy_tummy_day_order
 	belongs_to :meal
 
 

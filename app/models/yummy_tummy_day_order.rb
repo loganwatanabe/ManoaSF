@@ -14,7 +14,7 @@ class YummyTummyDayOrder < ActiveRecord::Base
 
 	#scopes
 	scope :for_participant, lambda {|participant_id| where("participant_id = ?", participant_id) }
-	scope :for_group, joins(:participant).lambda {|group_id| where("participant.group_id = ?", group_id) }
+	scope :for_group, lambda {|group_id| joins(:participant).where("participant.group_id = ?", group_id) }
 	scope :children_orders, joins(:participant).where("participant.role = ? ", "child")
 	scope :junior_orders, joins(:participant).where("participant.role = ? ", "junior")
 

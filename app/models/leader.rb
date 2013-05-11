@@ -9,7 +9,7 @@ class Leader < ActiveRecord::Base
 
 	#relationships
 	has_one :group
-	has_many :participants, :through => :group
+	#has_many :participants, :through => :groups
 
 
 	#scopes

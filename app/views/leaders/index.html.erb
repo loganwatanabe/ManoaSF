@@ -1,0 +1,35 @@
+<h1>Listing leaders</h1>
+
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Nickname</th>
+    <th>Date of birth</th>
+    <th>Notes</th>
+    <th>Phone</th>
+    <th>Specialty</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @leaders.each do |leader| %>
+  <tr>
+    <td><%= leader.first_name %></td>
+    <td><%= leader.last_name %></td>
+    <td><%= leader.nickname %></td>
+    <td><%= leader.date_of_birth %></td>
+    <td><%= leader.notes %></td>
+    <td><%= leader.phone %></td>
+    <td><%= leader.specialty %></td>
+    <td><%= link_to 'Show', leader %></td>
+    <td><%= link_to 'Edit', edit_leader_path(leader) %></td>
+    <td><%= link_to 'Destroy', leader, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Leader', new_leader_path %>

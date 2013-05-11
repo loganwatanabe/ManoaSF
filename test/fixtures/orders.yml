@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  yummy_tummy_day_order_id: 1
+  meal_id: 1
+  quantity: 1
+  delivered: false
+
+two:
+  yummy_tummy_day_order_id: 1
+  meal_id: 1
+  quantity: 1
+  delivered: false

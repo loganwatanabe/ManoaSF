@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  food: MyString
+  date: 2013-05-11
+  cost: 1.5
+  number: 1
+
+two:
+  food: MyString
+  date: 2013-05-11
+  cost: 1.5
+  number: 1

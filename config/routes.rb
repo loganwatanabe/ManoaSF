@@ -1,4 +1,28 @@
 SummerFun::Application.routes.draw do
+  resources :orders
+
+
+  resources :yummy_tummy_day_orders
+
+
+  resources :meals
+
+
+  resources :users
+
+
+  resources :groups
+
+
+  resources :contacts
+
+
+  resources :leaders
+
+
+  resources :participants
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

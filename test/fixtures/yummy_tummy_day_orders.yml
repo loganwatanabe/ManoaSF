@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  participant_id: 1
+  total_cost: 1.5
+
+two:
+  participant_id: 1
+  total_cost: 1.5

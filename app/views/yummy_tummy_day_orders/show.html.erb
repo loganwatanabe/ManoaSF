@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Participant:</b>
+  <%= @yummy_tummy_day_order.participant_id %>
+</p>
+
+<p>
+  <b>Total cost:</b>
+  <%= @yummy_tummy_day_order.total_cost %>
+</p>
+
+
+<%= link_to 'Edit', edit_yummy_tummy_day_order_path(@yummy_tummy_day_order) %> |
+<%= link_to 'Back', yummy_tummy_day_orders_path %>

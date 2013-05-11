@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  number: 1
+  min_grade: 1
+  max_grade: 1
+  min_age: 1
+  max_age: 1
+  homeroom: MyString
+  leader_id: 1
+  rotation: 1
+
+two:
+  number: 1
+  min_grade: 1
+  max_grade: 1
+  min_age: 1
+  max_age: 1
+  homeroom: MyString
+  leader_id: 1
+  rotation: 1

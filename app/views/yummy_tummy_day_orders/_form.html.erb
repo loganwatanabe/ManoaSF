@@ -1,0 +1,25 @@
+<%= form_for(@yummy_tummy_day_order) do |f| %>
+  <% if @yummy_tummy_day_order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@yummy_tummy_day_order.errors.count, "error") %> prohibited this yummy_tummy_day_order from being saved:</h2>
+
+      <ul>
+      <% @yummy_tummy_day_order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :participant_id %><br />
+    <%= f.number_field :participant_id %>
+  </div>
+  <div class="field">
+    <%= f.label :total_cost %><br />
+    <%= f.text_field :total_cost %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

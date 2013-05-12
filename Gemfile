@@ -11,6 +11,7 @@ gem 'cancan'
 gem 'chronic', '0.9.1'
 gem 'nested_form', :git => 'git://github.com/ryanb/nested_form.git'
 gem 'geocoder', '1.1.6'
+gem 'scoped_search'
 
 # Gems used only in testing
 group :test do

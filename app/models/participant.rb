@@ -2,6 +2,7 @@ class Participant < ActiveRecord::Base
   attr_accessible :date_of_birth, :first_name, :grade, :group_id, :last_name, :nickname, :notes, :role
 
 
+  	scoped_search :on => [:first_name, :last_name, :nickname]
 	#callbacks
 
 
@@ -17,7 +18,7 @@ class Participant < ActiveRecord::Base
 
 	#scopes
 	scope :alphabetical, order('last_name, first_name')
-	scope :by_group, order('group_id')
+	scope :by_group, joins(:group).order('number')
 	scope :for_group, lambda {|group_id| where("group_id = ?", group_id) }
 	scope :by_age, order('date_of_birth')
 	scope :by_grade, order('grade')
@@ -25,15 +26,15 @@ class Participant < ActiveRecord::Base
 	scope :children, where('role = ?', 'child')
 	scope :juniors, where('role = ?', 'junior')
 
-		#for search purposes
-	scope :search, lambda { |term| where('first_name LIKE ? OR last_name LIKE ? OR nickname LIKE ?', "%#{term}%", "%#{term}%", "%#{term}%") }
+	# 	#for search purposes
+	# scope :search, lambda { |term| where('first_name LIKE ? OR last_name LIKE ? OR nickname LIKE ?', "%#{term}%", "%#{term}%", "%#{term}%") }
 
 
 
 	#validations
 	ROLES = [['Child', :child],['Junior Leader', :junior]]
 
-	validates_presence_of :first_name, :last_name, :date_of_birth
+	validates_presence_of :first_name, :last_name, :date_of_birth, :role
   	validates_date :date_of_birth, :on_or_before => lambda { 3.years.ago }, :on_or_before_message => "must be at least 3 years old"
   	validates_numericality_of :grade, :only_integer => true, :greater_than_or_equal_to => 0, :less_than => 13
 	validates_inclusion_of :role, :in => %w[child junior], :message => "is not recognized by the system"
@@ -60,11 +61,11 @@ class Participant < ActiveRecord::Base
 	end
 	  
  	# alternative methods (some find more natural...)
-	def is_child?
+	def child?
 	  	role == 'child'
  	end
 	  
-	def is_junior?
+	def junior?
 	 	 role == 'junior'
  	end
 

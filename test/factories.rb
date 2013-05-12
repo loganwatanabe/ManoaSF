@@ -27,8 +27,8 @@ FactoryGirl.define do
     first_name "Timmy"
     last_name "Toddler"
     nickname  nil
-    date_of_birth 7.years.ago.to_date
-    grade 2
+    date_of_birth 11.years.ago.to_date
+    grade 4
     notes nil
     role 'child'
   end

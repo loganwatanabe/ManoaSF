@@ -30,11 +30,12 @@ class ActiveSupport::TestCase
 
     # Context for group
   def create_group_context
-    @group1=FactoryGirl.create(:group, :leader => @monica)
-    @group2=FactoryGirl.create(:group, :leader => @jp)
-    @group3=FactoryGirl.create(:group, :leader => @bt, :rotation => 2)
-    @group4=FactoryGirl.create(:group, :leader => @logan, :rotation => 2)
-    @group5=FactoryGirl.create(:group, :leader => @nick, :rotation => 3)
+    @group1=FactoryGirl.create(:group, :number => 1, :leader => @monica)
+    @group4=FactoryGirl.create(:group, :number => 4, :leader => @logan, :rotation => 2)
+    @group2=FactoryGirl.create(:group, :number => 2, :leader => @jp)
+    @group5=FactoryGirl.create(:group, :number => 5, :leader => @nick, :rotation => 3)
+    @group3=FactoryGirl.create(:group, :number => 3, :leader => @bt, :rotation => 2)
+
   end
   
   def remove_group_context
@@ -48,9 +49,40 @@ class ActiveSupport::TestCase
 
   # Context for participants
   def create_participant_context
+    #children
+    @timmy = FactoryGirl.create(:participant, group: @group3)
+    @adam = FactoryGirl.create(:participant, first_name: "Adam", last_name: "Adamson", date_of_birth: 5.years.ago.to_date, grade: 0, group: @group1)
+    @betty = FactoryGirl.create(:participant, first_name: "Betty", last_name: "Bettle", date_of_birth: 10.years.ago.to_date, grade: 3, group: @group3)
+    @eric = FactoryGirl.create(:participant, first_name: "Eric", last_name: "Ernie", date_of_birth: 10.years.ago.to_date, grade: 5, group: @group4)
+    @annie = FactoryGirl.create(:participant, first_name: "Annie", last_name: "Anderson", date_of_birth: 7.years.ago.to_date, grade: 1, group: @group2)
+    @benny = FactoryGirl.create(:participant, first_name: "Benny", last_name: "Benson", nickname: "Ben", date_of_birth: 8.years.ago.to_date, grade: 2, group: @group2)
+
+    #junior leaders
+    @yi = FactoryGirl.create(:participant, role: 'junior', first_name: "Yi", last_name: "Young", nickname: "Jack", date_of_birth: 13.years.ago.to_date, grade: 9, group: @group2)
+    @gina = FactoryGirl.create(:participant, role: 'junior', first_name: "Gina", last_name: "Goldberg", date_of_birth: 12.years.ago.to_date, grade: 7, group: @group3)
+    @zach = FactoryGirl.create(:participant, role: 'junior', first_name: "Zach", last_name: "Zoidberg", date_of_birth: 15.years.ago.to_date, grade: 10, group: @group1)
+    @sam = FactoryGirl.create(:participant, role: 'junior', first_name: "Sam", last_name: "Sampson", date_of_birth: 16.years.ago.to_date, grade: 10, group: @group4)
+    @oren = FactoryGirl.create(:participant, role: 'junior', first_name: "Oren", last_name: "Ogletree", date_of_birth: 18.years.ago.to_date, grade: 11, group: @group5)
+
+
+
   end
   
   def remove_participant_context
+    #children
+    @timmy.destroy
+    @adam.destroy
+    @annie.destroy
+    @benny.destroy
+    @betty.destroy
+    @eric.destroy
+
+    #junior leaders
+    @zach.destroy
+    @yi.destroy
+    @gina.destroy
+    @sam.destroy
+    @oren.destroy
   end
 
       # Context for contact

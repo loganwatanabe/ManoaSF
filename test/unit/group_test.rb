@@ -37,7 +37,7 @@ class GroupTest < ActiveSupport::TestCase
   should_not allow_value(-1).for(:rotation)
   should_not allow_value(3.14).for(:rotation)
 
-  # tests for phone
+  # tests for homeroom
   should allow_value("MPB").for(:homeroom)
   should allow_value("Ewa New Gym").for(:homeroom)
 

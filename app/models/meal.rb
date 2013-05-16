@@ -15,6 +15,7 @@ class Meal < ActiveRecord::Base
 	#scopes
 
 	#number is just another way to group together meals delivered on the same day
+	scope :alphabetical, order('food')
 	scope :by_number, order('number')
 	scope :for_number, lambda {|number| where( "number = ? ", number) }
 	scope :for_date, lambda {|date| where( "date = ? ", date) }
@@ -22,12 +23,13 @@ class Meal < ActiveRecord::Base
 	scope :chronological, order('date')
 	scope :past, where('date < ?', Date.today)
 	scope :upcoming, where('date >= ?', Date.today)
-	scope :next, lambda {|num| limit(num) }
+	#scope :next, lambda {|num| where()limit(num) }
+	#for :next I want to be able to get the next weeks
 
 
 	#validations
 	validates_presence_of :food
-  	validates_date :date
+  	validates_date :date, :allow_nil => false
   	validates_numericality_of :cost, :only_integer => false, :greater_than => 0
 
 

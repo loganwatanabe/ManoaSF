@@ -87,9 +87,21 @@ class ActiveSupport::TestCase
 
       # Context for contact
   def create_contact_context
+    @tim_dad = FactoryGirl.create(:contact, participant: @timmy)
+    @tim_mom = FactoryGirl.create(:contact, participant: @timmy, first_name: "Tina", phone_1: "8089882770", phone_2: "8082200134", relation: "Mother")
+    @zach_dad = FactoryGirl.create(:contact, participant: @zach, first_name: "Finn", last_name: "Zoidberg", phone_1: "8086431111", phone_1_type: "cell", phone_2: "8082200134", phone_2_type: "home")
+    @zach_mom = FactoryGirl.create(:contact, participant: @zach, first_name: "Leslie", last_name: "Zoidberg", phone_1: "8084222222", phone_1_type: "work", phone_2: "8082200134", phone_2_type: "home", relation: "Mother")
+    @annie_dr = FactoryGirl.create(:contact, participant: @annie, first_name: "Wilbur", last_name: "Einstein", phone_1: "8085755751", phone_1_type: "work", phone_2: nil, phone_2_type: nil, relation: "Doctor")
+    @eric_aunty = FactoryGirl.create(:contact, participant: @eric, first_name: "Kanani", last_name: "Koleslaw", phone_1: "8084250169", phone_1_type: "cell", phone_2: nil, phone_2_type: nil, relation: "Aunty")
   end
   
   def remove_contact_context
+    @tim_dad.destroy
+    @tim_mom.destroy
+    @zach_dad.destroy
+    @zach_mom.destroy
+    @annie_dr.destroy
+    @eric_aunty.destroy
   end
 
     # Context for yummy_tummy_day_orders
@@ -101,9 +113,29 @@ class ActiveSupport::TestCase
 
       # Context for meals
   def create_meal_context
+    @pizza_cheese = FactoryGirl.create(:meal, food: "Cheese Pizza", cost: 5.00, date: 1.week.from_now.to_date, number: 1)
+    @pizza_supreme = FactoryGirl.create(:meal, food: "Supreme Pizza", cost: 5.00, date: 1.week.from_now.to_date, number: 1)
+    @mcdonalds_nuggets = FactoryGirl.create(:meal, food: "Chicken Nuggets", cost: 5.00, date: 2.weeks.from_now.to_date, number: 2)
+    @mcdonalds_burger = FactoryGirl.create(:meal, food: "Hamburger", cost: 5.00, date: 2.weeks.from_now.to_date, number: 2)
+    @chicken = FactoryGirl.create(:meal, food: "Chicken", cost: 4.50, date: 3.weeks.from_now.to_date, number: 3)
+    @subway_turkey = FactoryGirl.create(:meal, food: "Turkey Subway", cost: 5.00, date: 5.weeks.from_now.to_date, number: 4)
+    @subway_ham = FactoryGirl.create(:meal, food: "Ham Subway", cost: 5.00, date: 5.weeks.from_now.to_date, number: 4)
+    @musubi_spam = FactoryGirl.create(:meal, food: "Spam Musubi", cost: 4.00, date: 6.weeks.from_now.to_date, number: 5)
+    @musubi_chicken = FactoryGirl.create(:meal, food: "Chicken Musubi", cost: 4.00, date: 6.weeks.from_now.to_date, number: 5)
+    @apples = FactoryGirl.create(:meal, food: "Apples", cost: 2.50, date: 3.days.ago.to_date, number: 6)
   end
   
   def remove_meal_context
+    @pizza_cheese.destroy
+    @pizza_supreme.destroy
+    @mcdonalds_nuggets.destroy
+    @mcdonalds_burger.destroy
+    @chicken.destroy
+    @subway_turkey.destroy
+    @subway_ham.destroy
+    @musubi_spam.destroy
+    @musubi_chicken.destroy
+    @apples.destroy
   end
 
 

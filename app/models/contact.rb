@@ -11,26 +11,33 @@ class Contact < ActiveRecord::Base
 
 	#scopes
 	scope :for_participant, lambda {|participant_id| where("participant_id = ?", participant_id) }
+	scope :alphabetical, order('last_name, first_name')
 
 
 	#validations
 	TYPES = [['Home', :home],['Cellular', :cell],['Work', :work]]
 
 
-	validates_presence_of :first_name, :last_name, :participant_id, :relation
+	validates_presence_of :first_name, :last_name, :participant_id, :relation, :phone_1
 
-	validates_format_of :phone_1, :with => /^\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}$/, :message => "should be 10 digits (area code needed) and delimited with dashes only", :allow_blank => true
-	validates_format_of :phone_2, :with => /^\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}$/, :message => "should be 10 digits (area code needed) and delimited with dashes only", :allow_blank => true
+	validates_format_of :phone_1, :with => /^\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}$/, :message => "should be 10 digits (area code needed) and delimited with dashes only" #, :allow_blank => true
+	validates_format_of :phone_2, :with => /^\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}$/, :message => "should be 10 digits (area code needed) and delimited with dashes only", :allow_nil => true, :allow_blank => true
 
-	validates_inclusion_of :phone_1_type, :in => TYPES.map {|k, v| v}, :message => "is not a recognized phone type"
-	validates_inclusion_of :phone_2_type, :in => TYPES.map {|k, v| v}, :message => "is not a recognized phone type"
+	validates_inclusion_of :phone_1_type, :in => %w[cell work home], :message => "is not a recognized phone type", :allow_nil => true, :allow_blank => true
+	validates_inclusion_of :phone_2_type, :in => %w[cell work home], :message => "is not a recognized phone type", :allow_nil => true, :allow_blank => true
 
 	validates_numericality_of :participant_id, :only_integer => true, :greater_than => 0
 
 	#methods
 
 
-
+	def name
+   		"#{last_name}, #{first_name}"
+  	end
+  
+  	def proper_name
+   	 	"#{first_name} #{last_name}"
+  	end
 
 	private
 

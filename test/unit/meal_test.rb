@@ -69,7 +69,7 @@ class MealTest < ActiveSupport::TestCase
 	    end
 
 	    should "have a scope to order meals by number" do
-	    	assert_equal ["Cheese Pizza", "Supreme Pizza", "Chicken Nuggets", "Hamburger", "Chicken", "Ham Subway", "Turkey Subway", "Chicken Musubi", "Spam Musubi", "Apples"], Meal.by_number.alphabetical.map{|m| m.food}
+	    	assert_equal ["Apples", "Cheese Pizza", "Supreme Pizza", "Chicken Nuggets", "Hamburger", "Chicken", "Turkey Subway", "Ham Subway", "Spam Musubi", "Chicken Musubi"], Meal.by_number.alphabetical.map{|m| m.food}
 	    end
 
 	    should "have a scope to get meals for a date" do
@@ -79,9 +79,9 @@ class MealTest < ActiveSupport::TestCase
 	    end
 
 	    should "have a scope to get meals for a number" do
-	    	assert_equal ["Chicken Nuggets", "Hamburger"], Meal.for_number(2).alphabetical.map{|m| m.food}
-	    	assert_equal ["Chicken"], Meal.for_number(3).alphabetical.map{|m| m.food}
-	    	assert_equal ["Chicken Musubi", "Spam Musubi"], Meal.for_number(5).alphabetical.map{|m| m.food}
+	    	assert_equal ["Cheese Pizza"], Meal.for_number(2).alphabetical.map{|m| m.food}
+	    	assert_equal ["Supreme Pizza"], Meal.for_number(3).alphabetical.map{|m| m.food}
+	    	assert_equal ["Hamburger"], Meal.for_number(5).alphabetical.map{|m| m.food}
 	    end
 
 	    should "have a scope to get past meals" do
@@ -92,8 +92,8 @@ class MealTest < ActiveSupport::TestCase
 	    	assert_equal ["Cheese Pizza", "Chicken", "Chicken Musubi", "Chicken Nuggets", "Ham Subway", "Hamburger", "Spam Musubi", "Supreme Pizza", "Turkey Subway"], Meal.upcoming.alphabetical.map{|m| m.food}
 	    end
 
-	    should "have a scope to get the next meal" do
-
+	    should "have a method to get the next meals" do
+	    	assert_equal ["Cheese Pizza", "Supreme Pizza"], Meal.next_meals.map{|m| m.food}
 	    end
 
 

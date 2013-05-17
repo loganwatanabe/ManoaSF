@@ -19,8 +19,8 @@ class Group < ActiveRecord::Base
 
 
 	#validations
-	validates_presence_of :leader_id, :number
-  	validates_numericality_of :leader_id, :only_integer => true, :greater_than => 0
+	validates_presence_of :number
+  	validates_numericality_of :leader_id, :only_integer => true, :greater_than => 0, :allow_nil => true
   	validates_numericality_of :number, :only_integer => true, :greater_than_or_equal_to => 0, :less_than => 18
   	validates_numericality_of :rotation, :only_integer => true, :greater_than => 0
 

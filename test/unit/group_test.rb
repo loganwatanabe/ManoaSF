@@ -7,14 +7,13 @@ class GroupTest < ActiveSupport::TestCase
 	should have_many(:yummy_tummy_day_orders).through(:participants)
   
   # Test basic validations
-  should validate_presence_of(:leader_id)
   should validate_presence_of(:number)
 
   # tests for leader_id
   should validate_numericality_of(:leader_id)
   should allow_value(1).for(:leader_id)
+  should allow_value(nil).for(:leader_id)
   should_not allow_value(0).for(:leader_id)
-  should_not allow_value(nil).for(:leader_id)
   should_not allow_value(-1).for(:leader_id)
   should_not allow_value(3.14).for(:leader_id)
   

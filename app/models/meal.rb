@@ -23,8 +23,6 @@ class Meal < ActiveRecord::Base
 	scope :chronological, order('date')
 	scope :past, where('date < ?', Date.today)
 	scope :upcoming, where('date >= ?', Date.today)
-	#scope :next, lambda {|num| where()limit(num) }
-	#for :next I want to be able to get the next weeks
 
 
 	#validations
@@ -34,6 +32,26 @@ class Meal < ActiveRecord::Base
 
 
 	#methods
+
+	def self.next_meals
+		next_date = Date.current.to_date
+		num = 0
+		meals = []
+		Meal.upcoming.chronological.each do |m|
+			if num == 0
+				meals << m
+				next_date = m.date
+				num+=1
+			else
+				if m.date == next_date
+					meals << m
+				end
+			end
+		end
+		meals
+
+
+	end
 
 
 

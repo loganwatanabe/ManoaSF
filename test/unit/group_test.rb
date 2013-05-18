@@ -87,7 +87,7 @@ class GroupTest < ActiveSupport::TestCase
 	    	assert @group1.valid?
 	    end
 	    
-	    should "have a scope to order by number" do
+	    should "have a scope to order groups by number" do
 	    	assert_equal [@group1, @group2, @group3, @group4, @group5], Group.by_number
 	    end
 

@@ -114,49 +114,46 @@ class OrderTest < ActiveSupport::TestCase
     	assert_equal ["Apples", "Apples", "Apples", "Apples", "Cheese Pizza", "Cheese Pizza", "Chicken", "Chicken", "Chicken", "Chicken", "Chicken", "Chicken Musubi", "Chicken Musubi", "Chicken Nuggets", "Chicken Nuggets", "Chicken Nuggets", "Hamburger", "Hamburger", "Spam Musubi", "Spam Musubi", "Spam Musubi", "Supreme Pizza", "Supreme Pizza", "Supreme Pizza"], Order.by_food.map{|o| o.meal.food}
     end
 
-    # should "have a scope to get orders for a ytd" do
-    # 	assert_equals [], Order.for_ytd(@tim_ytd).by_number
-    # end
+    should "have a scope to get orders for a ytd" do
+    	assert_equal [@tim_apple, @tim_cheese, @tim_burger, @tim_chicken, @tim_spam], Order.for_ytd(@tim_ytd).by_number
+    end
 
-    # should "have a scope to get orders not delivered" do
-    # 	assert_equals [], Order.not_delivered
-    # end
+    should "have a scope to get orders not delivered" do
+    	assert_equal [@eric_apple, @zach_apple], Order.not_delivered.by_participant
+    end
 
-    # should "have a scope to get orders that have been delivered" do
-    # 	assert_equals [], Order.was_delivered
-    # end
+    should "have a scope to get orders that have been delivered" do
+    	assert_equal [@annie_apple, @tim_apple], Order.was_delivered.by_participant
+    end
 
-    # should "have a scope to get orders for a meal" do
-    # 	assert_equals [], Order.for_meal(@apples)
-    # end
+    should "have a scope to get orders for a meal" do
+    	assert_equal [@annie_apple, @eric_apple, @tim_apple, @zach_apple], Order.for_meal(@apples).by_participant
+    end
 
-    # should "have a scope to get orders by date" do
-    # 	assert_equals [], Order.by_date
-    # end
-
-    #by_number
-    #by_participant
-    #for_ytd
-    #by_food
-
-	# scope :not_delivered, where('delivered = ?', false)
-	# scope :was_delivered, where('delivered = ?', true)
-	# scope :by_date, joins(:meal).order('meal.date')
-	# scope :for_meal, lambda{|meal_id| where("meal_id = ?", meal_id )}
+    should "have a scope to get orders by date" do
+    	assert_equal ["Apples", "Apples", "Apples", "Apples", "Cheese Pizza", "Cheese Pizza", "Supreme Pizza", "Supreme Pizza", "Supreme Pizza", "Chicken Nuggets", "Chicken Nuggets", "Chicken Nuggets", "Hamburger", "Hamburger", "Chicken", "Chicken", "Chicken", "Chicken", "Chicken", "Chicken Musubi", "Chicken Musubi", "Spam Musubi", "Spam Musubi", "Spam Musubi"], Order.by_date.by_food.map{|o| o.meal.food}
+    end
 
 
-	# validate :upcoming_meals_not_delivered
+	# # validate :upcoming_meals_not_delivered
+	# should "validate that meals are not delivered before their date" do
+	# 	bad_order = FactoryGirl.build(:order, yummy_tummy_day_order: @gina_ytd, meal: @subway_ham, quantity: 1, delivered: true)
+	# 	deny bad_order.valid?, "#{bad_order.to_yaml}"
+	# end
+
 
 	# def cost
+	should "have a method to get the cost of an order" do
+		assert_equal 4.00, @tim_spam.cost
+		assert_equal 9.00, @zach_chicken.cost
+		assert_equal 5.00, @eric_apple.cost
+
+	end
 
 
 
 
-
-
-
-
-	  end
+  end
 
 
 

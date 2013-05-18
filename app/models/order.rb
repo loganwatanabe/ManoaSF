@@ -9,15 +9,19 @@ class Order < ActiveRecord::Base
 
 	#relationships
 	belongs_to :yummy_tummy_day_order
-	#belongs_to :participant, :through => :yummy_tummy_day_order
+	has_one :participant, :through => :yummy_tummy_day_order
 	belongs_to :meal
 
 
 	#scopes
 	scope :not_delivered, where('delivered = ?', false)
 	scope :was_delivered, where('delivered = ?', true)
-	scope :by_meal, joins(:meal).order('meal.date')
+	scope :by_date, joins(:meal).order('meal.date')
+	scope :by_participant, joins(:participant).order('last_name, first_name')
+	scope :by_number, joins(:meal).order('number')
+	scope :by_food, joins(:meal).order('food')
 	scope :for_meal, lambda{|meal_id| where("meal_id = ?", meal_id )}
+	scope :for_ytd, lambda{|yummy_tummy_day_order_id| where("yummy_tummy_day_order_id = ?", yummy_tummy_day_order_id)}
 
 
 
@@ -44,6 +48,8 @@ class Order < ActiveRecord::Base
 	def upcoming_meals_not_delivered
 		if self.delivered.nil?
 			return true
+		elsif self.meal.nil?
+			return false
 		elsif self.meal.date > Date.current.to_date # if the date has not yet passed
 			return false #can't have delivered if the date hasn't come yet
 		else

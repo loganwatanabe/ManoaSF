@@ -170,7 +170,7 @@ class ActiveSupport::TestCase
     @annie_chicken_mus = FactoryGirl.create(:order, yummy_tummy_day_order: @annie_ytd , meal: @musubi_chicken , quantity: 2)
     @annie_supreme = FactoryGirl.create(:order, yummy_tummy_day_order: @annie_ytd , meal: @pizza_supreme , quantity: 1)
     @annie_chicken = FactoryGirl.create(:order, yummy_tummy_day_order: @annie_ytd , meal: @chicken , quantity: 1)
-    @eric_apples = FactoryGirl.create(:order, yummy_tummy_day_order: @eric_ytd , meal: @apples , quantity: 2, delivered: false)
+    @eric_apple = FactoryGirl.create(:order, yummy_tummy_day_order: @eric_ytd , meal: @apples , quantity: 2, delivered: false)
     @eric_nuggets = FactoryGirl.create(:order, yummy_tummy_day_order: @eric_ytd , meal: @mcdonalds_nuggets , quantity: 1)
     @eric_chicken = FactoryGirl.create(:order, yummy_tummy_day_order: @eric_ytd , meal: @chicken , quantity: 1)
     @zach_apple = FactoryGirl.create(:order, yummy_tummy_day_order: @zach_ytd , meal: @apples , quantity: 2, delivered: false)
@@ -197,7 +197,7 @@ class ActiveSupport::TestCase
     @annie_chicken_mus.destroy
     @annie_supreme.destroy
     @annie_chicken.destroy
-    @eric_apples.destroy
+    @eric_apple.destroy
     @eric_nuggets.destroy
     @eric_chicken.destroy
     @zach_apple.destroy

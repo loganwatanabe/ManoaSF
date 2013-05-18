@@ -32,14 +32,23 @@ class YummyTummyDayOrder < ActiveRecord::Base
 
 	#methods
 
+	def calculate_total_cost
+		cost_array = self.orders.map{|o| o.cost}
+		unless cost_array.empty?
+			return cost_array.inject{|sum, i| sum + i}
+		else
+			return nil
+		end
+	end
+
 	def get_meals
 		self.orders.map{|o| o.meal}
 	end
 
-	def quantity_for_week?(number)
-		order = self.orders.select{|o| o.meal.number == number}.first
+	def quantity_for_meal(meal)
+		order = self.orders.select{|o| o.meal == meal}.first
 		if order.nil?
-			return nil
+			return 0
 		else
 			return order.quantity
 		end
@@ -47,16 +56,16 @@ class YummyTummyDayOrder < ActiveRecord::Base
 
 	private
 
-	def calculate_total_cost
-		cost_array = self.orders.map{|o| o.cost}
-		unless cost_array.empty?
-			self.total_cost = cost_array.inject{|sum, i| sum + i}
-			self.total_cost.save!
-		else
-			self.total_cost = nil
-			self.total_cost.save!
-		end
-	end
+	# def calculate_total_cost
+	# 	cost_array = self.orders.map{|o| o.cost}
+	# 	unless cost_array.empty?
+	# 		self.total_cost = cost_array.inject{|sum, i| sum + i}
+	# 		self.total_cost.save!
+	# 	else
+	# 		self.total_cost = nil
+	# 		self.total_cost.save!
+	# 	end
+	# end
 
 
 end

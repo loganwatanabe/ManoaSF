@@ -54,7 +54,7 @@ class YummyTummyDayOrderTest < ActiveSupport::TestCase
 
 		should "calculate total cost on update" do
 			#change this when you put in orders
-	    	assert_equal nil, @tim_ytd.total_cost
+	    	# assert_equal nil, @tim_ytd.total_cost
 	    end
 	    
 	# scope :for_participant, lambda {|participant_id| where("participant_id = ?", participant_id) }
@@ -94,13 +94,26 @@ class YummyTummyDayOrderTest < ActiveSupport::TestCase
 	    #method tests
 	    #need orders for this
 	    should "have a method to get meals for an order" do
-	    	
+	    	assert_equal ["Apples", "Cheese Pizza", "Chicken", "Hamburger", "Spam Musubi"], @tim_ytd.get_meals.map{|m| m.food}.sort!
+	    	assert_equal ["Apples", "Chicken", "Chicken Nuggets"], @eric_ytd.get_meals.map{|m| m.food}.sort!
+	    	assert_equal ["Apples", "Cheese Pizza", "Chicken", "Chicken Musubi", "Chicken Nuggets", "Hamburger", "Spam Musubi", "Supreme Pizza"], @zach_ytd.get_meals.map{|m| m.food}.sort!
+
 	    end
 
 	    should "have a method to get quantity of a meal" do
+	    	assert_equal 1, @tim_ytd.quantity_for_meal(@apples)
+	    	assert_equal 0, @tim_ytd.quantity_for_meal(@subway_ham)
+	    	assert_equal 2, @zach_ytd.quantity_for_meal(@apples)
 	    	
 	    end
 
+	    should "have a method to get total cost of a YTD" do
+	    	assert_equal 21.00, @tim_ytd.calculate_total_cost
+	    	assert_equal 25.00, @annie_ytd.calculate_total_cost
+	    	assert_equal 14.50, @eric_ytd.calculate_total_cost
+	    	assert_equal 13.50, @gina_ytd.calculate_total_cost
+	    	assert_equal 42.00, @zach_ytd.calculate_total_cost
+	    end
 
 
 	end

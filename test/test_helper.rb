@@ -105,7 +105,7 @@ class ActiveSupport::TestCase
   end
 
     # Context for yummy_tummy_day_orders
-  def create_yummy_tummy_context
+  def create_yummy_tummy_day_order_context
     @tim_ytd = FactoryGirl.create(:yummy_tummy_day_order, participant: @timmy)
     @annie_ytd = FactoryGirl.create(:yummy_tummy_day_order, participant: @annie)
     @eric_ytd = FactoryGirl.create(:yummy_tummy_day_order, participant: @eric)
@@ -114,7 +114,7 @@ class ActiveSupport::TestCase
 
   end
   
-  def remove_yummy_tummy_context
+  def remove_yummy_tummy_day_order_context
     @tim_ytd.destroy
     @annie_ytd.destroy
     @eric_ytd.destroy
@@ -151,18 +151,66 @@ class ActiveSupport::TestCase
 
     #apples, hamburger, musubi spam, musubi chicken, pizza_cheese, chicken
 
-    # @tim_ytd.remove 
-    # @annie_ytd.remove 
-    # @eric_ytd.remove
-    # @zach_ytd.remove
-    # @gina_ytd.remove
+    # @tim_ytd apples hamburger spam cheese chicken
+    # @annie_ytd apples nuggets chicken supreme chicken
+    # @eric_ytd apples, nuggets, chicken
+    # @zach_ytd applesx2, nuggets & hamburger, spam&chicken, cheese&supreme, chickenx2
+    # @gina_ytd spam, supreme, chicken
 
 
       # Context for orders
   def create_order_context
+    @tim_apple = FactoryGirl.create(:order, yummy_tummy_day_order: @tim_ytd , meal: @apples, quantity: 1, delivered: true)
+    @tim_burger = FactoryGirl.create(:order, yummy_tummy_day_order: @tim_ytd , meal: @mcdonalds_burger , quantity: 1)
+    # @tim_spam = FactoryGirl.create(:order, yummy_tummy_day_order: @tim_ytd , meal: @musubi_spam , quantity: 1)
+    # @tim_cheese = FactoryGirl.create(:order, yummy_tummy_day_order: @tim_ytd , meal: @pizza_cheese , quantity: 1)
+    # @tim_chicken = FactoryGirl.create(:order, yummy_tummy_day_order: @tim_ytd , meal: @chicken , quantity: 1)
+    # @annie_apple = FactoryGirl.create(:order, yummy_tummy_day_order: @annie_ytd , meal: @apples , quantity: 1, delivered: true)
+    # @annie_nuggets = FactoryGirl.create(:order, yummy_tummy_day_order: @annie_ytd , meal: @mcdonalds_nuggets , quantity: 1)
+    # @annie_chicken_mus = FactoryGirl.create(:order, yummy_tummy_day_order: @annie_ytd , meal: @musubi_chicken , quantity: 2)
+    # @annie_supreme = FactoryGirl.create(:order, yummy_tummy_day_order: @annie_ytd , meal: @pizza_supreme , quantity: 1)
+    # @annie_chicken = FactoryGirl.create(:order, yummy_tummy_day_order: @annie_ytd , meal: @chicken , quantity: 1)
+    # @eric_apples = FactoryGirl.create(:order, yummy_tummy_day_order: @eric_ytd , meal: @apples , quantity: 2, delivered: false)
+    # @eric_nuggets = FactoryGirl.create(:order, yummy_tummy_day_order: @eric_ytd , meal: @mcdonalds_nuggets , quantity: 1)
+    # @eric_chicken = FactoryGirl.create(:order, yummy_tummy_day_order: @eric_ytd , meal: @chicken , quantity: 1)
+    # @zach_apple = FactoryGirl.create(:order, yummy_tummy_day_order: @zach_ytd , meal: @apples , quantity: 2, delivered: false)
+    # @zach_nuggets = FactoryGirl.create(:order, yummy_tummy_day_order: @zach_ytd , meal: @mcdonalds_nuggets , quantity: 1)
+    # @zach_burger = FactoryGirl.create(:order, yummy_tummy_day_order: @zach_ytd , meal: @mcdonalds_burger , quantity: 1)
+    # @zach_spam = FactoryGirl.create(:order, yummy_tummy_day_order: @zach_ytd , meal: @musubi_spam , quantity: 1)
+    # @zach_chicken_mus = FactoryGirl.create(:order, yummy_tummy_day_order: @zach_ytd , meal: @musubi_chicken , quantity: 1)
+    # @zach_cheese = FactoryGirl.create(:order, yummy_tummy_day_order: @zach_ytd , meal: @pizza_cheese , quantity: 1)
+    # @zach_supreme = FactoryGirl.create(:order, yummy_tummy_day_order: @zach_ytd , meal: @pizza_supreme , quantity: 1)
+    # @zach_chicken = FactoryGirl.create(:order, yummy_tummy_day_order: @zach_ytd , meal: @chicken , quantity: 2)
+    # @gina_spam = FactoryGirl.create(:order, yummy_tummy_day_order: @gina_ytd , meal: @musubi_spam , quantity: 1)
+    # @gina_chicken = FactoryGirl.create(:order, yummy_tummy_day_order: @gina_ytd , meal: @chicken , quantity: 1)
+    # @gina_supreme = FactoryGirl.create(:order, yummy_tummy_day_order: @gina_ytd , meal: @pizza_supreme , quantity: 1)
   end
   
   def remove_order_context
+    @tim_apple.destroy
+    @tim_burger.destroy
+    # @tim_spam.destroy
+    # @tim_cheese.destroy
+    # @tim_chicken.destroy
+    # @annie_apple.destroy
+    # @annie_nuggets.destroy
+    # @annie_chicken_mus.destroy
+    # @annie_supreme.destroy
+    # @annie_chicken.destroy
+    # @eric_apples.destroy
+    # @eric_nuggets.destroy
+    # @eric_chicken.destroy
+    # @zach_apple.destroy
+    # @zach_nuggets.destroy
+    # @zach_burger.destroy
+    # @zach_spam.destroy
+    # @zach_chicken_mus.destroy
+    # @zach_cheese.destroy
+    # @zach_supreme.destroy
+    # @zach_chicken.destroy
+    # @gina_spam.destroy
+    # @gina_chicken.destroy
+    # @gina_supreme.destroy
 
   end
 

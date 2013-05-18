@@ -15,27 +15,27 @@ class Order < ActiveRecord::Base
 
 	#scopes
 	scope :not_delivered, where('delivered = ?', false)
-	scope :delivered, where('delivered = ?', true)
+	scope :was_delivered, where('delivered = ?', true)
 	scope :by_meal, joins(:meal).order('meal.date')
 	scope :for_meal, lambda{|meal_id| where("meal_id = ?", meal_id )}
 
 
 
 	#validations
-	validates_presence_of :meal_id, :quantity, :yummy_tummy_order_id
+	validates_presence_of :meal_id, :quantity, :yummy_tummy_day_order_id #problem here
 
-	validates_numericality_of :yummy_tummy_order_id, :only_integer => true, :greater_than => 0
+	validates_numericality_of :yummy_tummy_day_order_id, :only_integer => true, :greater_than => 0 #problem here
 	validates_numericality_of :meal_id, :only_integer => true, :greater_than => 0
-	validates_numericality_of :quantity, :only_integer => true, :greater_than_or_equal_to => 0
-	validates_inclusion_of :delivered, :in => [true, false], :message => "must be true or false", :allow_nil => true
+	validates_numericality_of :quantity, :only_integer => true, :greater_than => 0, :allow_nil => false
+	validates_inclusion_of :delivered, :in => [true, false], :message => "must be true or false or nil", :allow_nil => true
 
 	validate :upcoming_meals_not_delivered
 
 	#methods
 
 	def cost
-		meal_cost = self.meal.cost
-		meal_cost * quantity
+		meal_cost = self.meal.cost * quantity
+		return meal_cost
 	end
 
 

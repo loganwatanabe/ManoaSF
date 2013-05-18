@@ -39,8 +39,8 @@ class YummyTummyDayOrderTest < ActiveSupport::TestCase
 	      create_leader_context
 	      create_group_context
 	      create_participant_context
+	      create_yummy_tummy_day_order_context
 	      create_order_context
-	      create_yummy_tummy_context
 	    end
 	    
 	    teardown do
@@ -48,8 +48,8 @@ class YummyTummyDayOrderTest < ActiveSupport::TestCase
 	      remove_leader_context
 	      remove_group_context
 	      remove_participant_context
+	      remove_yummy_tummy_day_order_context
 	      remove_order_context
-	      remove_yummy_tummy_context
 	    end
 
 		should "calculate total cost on update" do

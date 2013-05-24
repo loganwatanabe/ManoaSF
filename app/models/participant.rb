@@ -34,7 +34,7 @@ class Participant < ActiveRecord::Base
 	#validations
 	ROLES = [['Child', :child],['Junior Leader', :junior]]
 
-	validates_presence_of :first_name, :last_name, :date_of_birth, :role
+	validates_presence_of :first_name, :last_name, :role #date_of_birth
   	validates_date :date_of_birth, :on_or_before => lambda { 3.years.ago }, :on_or_before_message => "must be at least 3 years old"
   	validates_numericality_of :grade, :only_integer => true, :greater_than_or_equal_to => 0, :less_than => 13
 	validates_inclusion_of :role, :in => %w[child junior], :message => "is not recognized by the system"

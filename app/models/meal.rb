@@ -26,7 +26,7 @@ class Meal < ActiveRecord::Base
 
 
 	#validations
-	validates_presence_of :food
+	validates_presence_of :food, :date
   	validates_date :date, :allow_nil => false
   	validates_numericality_of :cost, :only_integer => false, :greater_than => 0
 

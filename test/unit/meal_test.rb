@@ -9,6 +9,7 @@ class MealTest < ActiveSupport::TestCase
 
 	  # Test basic validations
 	  should validate_presence_of(:food)
+	  should validate_presence_of(:date)
 
 
 	  #test date

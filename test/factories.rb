@@ -32,9 +32,9 @@ FactoryGirl.define do
     grade 4
     notes nil
     role 'child'
-    gender
-    school
-    active true
+    female false
+    school "Manoa Elementary"
+    active nil
   end
   
   factory :contact do

@@ -1,33 +1,35 @@
 class Participant < ActiveRecord::Base
-  attr_accessible :date_of_birth, :first_name, :grade, :group_id, :last_name, :nickname, :notes, :role, :school, :gender, :active
+  attr_accessible :date_of_birth, :first_name, :grade, :group_id, :last_name, :nickname, :notes, :role, :school, :female, :active
 
 
   	scoped_search :on => [:first_name, :last_name, :nickname]
 	#callbacks
 
-	#gender, school, active
+	#active has no use yet, just set it to nil
 
 
 	#relationships
 	belongs_to :group
 	#belongs_to :leader, :through => :group
 	has_many :contacts
-	has_many :phone_numbers, :through => :contacts ########
+	has_many :phone_numbers, :through => :contacts
 	has_one :yummy_tummy_day_order
 	has_many :orders, :through => :yummy_tummy_day_order
-	has_many :absences##########
+	has_many :absences
 
 
 
 	#scopes
 	scope :alphabetical, order('last_name, first_name')
-	scope :by_group, joins(:group).order('number')
+	scope :by_group, joins(:group).order('name')
 	scope :for_group, lambda {|group_id| where("group_id = ?", group_id) }
 	scope :by_age, order('date_of_birth')
 	scope :by_grade, order('grade')
 	scope :for_grade, lambda {|grade| where("grade = ?", grade) }
 	scope :children, where('role = ?', 'child')
 	scope :juniors, where('role = ?', 'junior')
+	scope :females, where('female = ?', true)#######
+    scope :males, where('female = ?', false)########
 
 	# 	#for search purposes
 	# scope :search, lambda { |term| where('first_name LIKE ? OR last_name LIKE ? OR nickname LIKE ?', "%#{term}%", "%#{term}%", "%#{term}%") }
@@ -37,14 +39,24 @@ class Participant < ActiveRecord::Base
 	#validations
 	ROLES = [['Child', :child],['Junior Leader', :junior]]
 
-	validates_presence_of :first_name, :last_name, :role, :gender
+	validates_presence_of :first_name, :last_name, :role, :group_id
   	validates_date :date_of_birth, :on_or_before => lambda { 3.years.ago }, :on_or_before_message => "must be at least 3 years old"
   	validates_numericality_of :grade, :only_integer => true, :greater_than_or_equal_to => 0, :less_than => 13
 	validates_inclusion_of :role, :in => %w[child junior], :message => "is not recognized by the system"
+
+	validates_inclusion_of :female, :in => [true, false], :message => "must be true or false", :allow_nil => false
+	validates_inclusion_of :active, :in => [true, false], :message => "must be true or false", :allow_nil => true
   
   	validates_numericality_of :group_id, :only_integer => true, :greater_than => 0
 
 	#methods
+
+	def gender ##################
+      return "Female" if female
+      "Male"
+      # female ? "Female" : "Male"
+    end  
+
 	def name
    		"#{last_name}, #{first_name}"
   	end
@@ -54,8 +66,8 @@ class Participant < ActiveRecord::Base
   	end
   
   	def age
-   		 return nil if date_of_birth.blank?
-    	(Time.now.to_s(:number).to_i - date_of_birth.to_time.to_s(:number).to_i)/10e9.to_i
+	  now = Time.now.utc.to_date
+	  now.year - date_of_birth.year - (date_of_birth.to_date.change(:year => now.year) > now ? 1 : 0)
   	end
 
 	def role?(authorized_role)
@@ -78,7 +90,7 @@ class Participant < ActiveRecord::Base
   	#MOST LIKELY WON'T USE THIS
 	#don't use this, only here if they need to implement constraints
   	def validates_child_group
-  		if self.is_junior?
+  		if self.junior?
   			return true
   		else
   			#only children here

@@ -5,13 +5,15 @@ class ParticipantTest < ActiveSupport::TestCase
 	#:date_of_birth, :first_name, :grade, :group_id, :last_name, :nickname, :notes, :role
 	should belong_to(:group)
 	should have_many(:contacts)
+	should have_many(:phone_numbers).through(:contacts)
+	should have_many(:absences)
 	should have_one(:yummy_tummy_day_order)
 	should have_many(:orders).through(:yummy_tummy_day_order)
 
   # Test basic validations
   should validate_presence_of(:first_name)
   should validate_presence_of(:last_name)
-  # should validate_presence_of(:date_of_birth)
+  should validate_presence_of(:group_id)
   should validate_presence_of(:role)
 
 
@@ -52,6 +54,12 @@ class ParticipantTest < ActiveSupport::TestCase
   should_not allow_value(nil).for(:role)
   should_not allow_value("leader").for(:role)
   should_not allow_value("volunteer").for(:role)
+
+      # tests for female
+  should_not allow_value(nil).for(:female)
+
+
+
   
 
   context "Creating a group context" do
@@ -124,6 +132,12 @@ class ParticipantTest < ActiveSupport::TestCase
 	      assert_equal true, @sam.junior?
 	    end
 
+	    should "have working gender method" do 
+	      assert_equal "Male", @adam.gender
+	      assert_equal "Female", @betty.gender
+	      assert_equal "Male", @sam.gender
+	    end
+
 	 	# :alphabetical
 		# :by_group
 		# :for_group
@@ -161,8 +175,15 @@ class ParticipantTest < ActiveSupport::TestCase
 	    	assert_equal [@annie, @benny, @yi], Participant.for_group(@group2).alphabetical
 	    	assert_equal [@betty, @gina, @timmy], Participant.for_group(@group3).alphabetical
 	    	assert_equal [@eric, @sam], Participant.for_group(@group4).alphabetical
-	    	assert_equal [@oren], Participant.for_group(@group5).alphabetical
+	    	assert_equal [@oren], Participant.for_group(@office).alphabetical
 	    end
+
+	    should "have a scope to order alphabetically" do
+	    	assert_equal [@adam, @benny, @eric, @oren, @sam, @timmy, @yi, @zach], Participant.males.alphabetical
+	    	assert_equal [@annie, @betty, @gina], Participant.females.alphabetical
+	    end
+
+
 
 	    should "have a scope to order by age" do
 	    	assert_equal ["Oren", "Sam", "Zach", "Yi", "Gina", "Timmy", "Betty", "Eric", "Benny", "Annie", "Adam"], Participant.by_age.alphabetical.map {|p| p.first_name }

@@ -26,8 +26,6 @@ class PhoneNumber < ActiveRecord::Base
   validates_inclusion_of :type, :in => %w[cell work home], :message => "is not a recognized phone type", :allow_nil => true, :allow_blank => true
 
 
-
-
   	private
 
 	def reformat_phone

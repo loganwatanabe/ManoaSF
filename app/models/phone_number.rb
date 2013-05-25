@@ -1,5 +1,5 @@
 class PhoneNumber < ActiveRecord::Base
-  attr_accessible :contact_id, :phone, :type
+  attr_accessible :contact_id, :phone, :phone_type
 
   #callbacks
   before_save :reformat_phone
@@ -9,9 +9,10 @@ class PhoneNumber < ActiveRecord::Base
   has_one :participant, :through => :contact
 
   #scopes
+  scope :by_type, order("phone_type")
   scope :for_contact, lambda {|contact_id| where("contact_id = ?", contact_id) }
-  scope :for_participant, lambda {|participant_id| where("participant_id = ?", participant_id) }
-  scope :for_type, lambda {|type| where("type = ?", type) }
+  scope :for_participant, lambda {|participant_id| joins(:contact).where("participant_id = ?", participant_id) }
+  scope :for_type, lambda {|type| where("phone_type = ?", type) }
 
   #validation
   TYPES = [['Home', :home],['Cellular', :cell],['Work', :work]]
@@ -23,7 +24,7 @@ class PhoneNumber < ActiveRecord::Base
 
   validates_format_of :phone, :with => /^\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}$/, :message => "should be 10 digits (area code needed) and delimited with dashes only" , :allow_nil => false
   
-  validates_inclusion_of :type, :in => %w[cell work home], :message => "is not a recognized phone type", :allow_nil => true, :allow_blank => true
+  validates_inclusion_of :phone_type, :in => %w[cell work home], :message => "is not a recognized phone type", :allow_nil => true, :allow_blank => true
 
 
   	private

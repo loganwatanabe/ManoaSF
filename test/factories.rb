@@ -74,7 +74,7 @@ FactoryGirl.define do
   factory :phone_number do
     association :contact
     phone 8089882688
-    type "home"
+    phone_type "home"
   end
 
   factory :absence do

@@ -215,32 +215,23 @@ class ActiveSupport::TestCase
   end
 
 
-    # @tim_dad = FactoryGirl.create(:contact, participant: @timmy)
-    # @tim_mom = FactoryGirl.create(:contact, participant: @timmy, first_name: "Tina", phone_1: "8089882770", phone_2: "8082200134"
-    # @zach_dad = FactoryGirl.create(:contact, participant: @zach, first_name: "Finn", last_name: "Zoidberg", phone_1: "8086431111", phone_1_type: "cell", 
-            # phone_2: "8082200134", phone_2_type: "home")
-    # @zach_mom = FactoryGirl.create(:contact, participant: @zach, first_name: "Leslie", last_name: "Zoidberg", phone_1: "8084222222", phone_1_type: "work", 
-            # phone_2: "8082200134", phone_2_type: "home"
-    # @annie_dr = FactoryGirl.create(:contact, participant: @annie, first_name: "Wilbur", last_name: "Einstein", phone_1: "8085755751", phone_1_type: "work"
-    # @eric_aunty = FactoryGirl.create(:contact, participant: @eric, first_name: "Kanani", last_name: "Koleslaw", phone_1: "8084250169", phone_1_type: "cell"
-
       # Context for phones
   def create_phone_number_context
-    @tim_dad_1 = FactoryGirl.create(:phone_number, contact: @tim_dad, phone: "8089882002", type: "cell")
-    @tim_mom_1 = FactoryGirl.create(:phone_number, contact: @tim_mom, phone: "8089882770", type: "home")
-    @tim_mom_1 = FactoryGirl.create(:phone_number, contact: @tim_mom, phone: "8082200134", type: "cell")
-    @zach_dad_1 = FactoryGirl.create(:phone_number, contact: @zach_dad, phone: "8083457777", type: "cell")
-    @zach_dad_2 = FactoryGirl.create(:phone_number, contact: @zach_dad, phone: "8082209834", type: "home")
-    @zach_mom_1 = FactoryGirl.create(:phone_number, contact: @zach_mom, phone: "8083466677", type: "work")
-    @zach_mom_2 = FactoryGirl.create(:phone_number, contact: @zach_mom, phone: "8089881234", type: "home")
-    @annie_dr_1 = FactoryGirl.create(:phone_number, contact: @annie_dr, phone: "8087443174", type: "work")
-    @eric_aunty_1 = FactoryGirl.create(:phone_number, contact: @eric_aunty, phone: "8089876546", type: "cell")
+    @tim_dad_1 = FactoryGirl.create(:phone_number, contact: @tim_dad, phone: "8089882002", phone_type: "cell")
+    @tim_mom_1 = FactoryGirl.create(:phone_number, contact: @tim_mom, phone: "8089882770", phone_type: "home")
+    @tim_mom_2 = FactoryGirl.create(:phone_number, contact: @tim_mom, phone: "8082200134", phone_type: "cell")
+    @zach_dad_1 = FactoryGirl.create(:phone_number, contact: @zach_dad, phone: "8083457777", phone_type: "cell")
+    @zach_dad_2 = FactoryGirl.create(:phone_number, contact: @zach_dad, phone: "8082209834", phone_type: "home")
+    @zach_mom_1 = FactoryGirl.create(:phone_number, contact: @zach_mom, phone: "8083466677", phone_type: "work")
+    @zach_mom_2 = FactoryGirl.create(:phone_number, contact: @zach_mom, phone: "8089881234", phone_type: "home")
+    @annie_dr_1 = FactoryGirl.create(:phone_number, contact: @annie_dr, phone: "8087443174", phone_type: "work")
+    @eric_aunty_1 = FactoryGirl.create(:phone_number, contact: @eric_aunty, phone: "8089876546", phone_type: "cell")
   end
   
   def remove_phone_number_context
     @tim_dad_1.destroy
     @tim_mom_1.destroy
-    @tim_mom_1.destroy
+    @tim_mom_2.destroy
     @zach_dad_1.destroy
     @zach_dad_2.destroy
     @zach_mom_1.destroy

@@ -14,7 +14,7 @@ FactoryGirl.define do
   
   factory :group do
     association :leader
-    name "Group1"
+    name "Group 1"
     max_age nil
     max_grade nil
     min_age nil

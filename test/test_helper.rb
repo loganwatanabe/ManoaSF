@@ -43,7 +43,7 @@ class ActiveSupport::TestCase
     @group2.destroy
     @group3.destroy
     @group4.destroy
-    @group5.destroy
+    @office.destroy
   end
 
 

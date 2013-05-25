@@ -7,7 +7,7 @@ class GroupTest < ActiveSupport::TestCase
 	should have_many(:yummy_tummy_day_orders).through(:participants)
   
   # Test basic validations
-  should validate_presence_of(:number)
+  should validate_presence_of(:name)
 
   # tests for leader_id
   should validate_numericality_of(:leader_id)
@@ -17,13 +17,6 @@ class GroupTest < ActiveSupport::TestCase
   should_not allow_value(-1).for(:leader_id)
   should_not allow_value(3.14).for(:leader_id)
   
-    # tests for number
-  should validate_numericality_of(:number)
-  should allow_value(1).for(:number)
-  should allow_value(0).for(:number)
-  should_not allow_value(nil).for(:number)
-  should_not allow_value(-1).for(:number)
-  should_not allow_value(3.14).for(:number)
 
 
     # tests for rotation
@@ -82,20 +75,20 @@ class GroupTest < ActiveSupport::TestCase
 	      remove_group_context
 	    end
 
-	    should "allow an existing leader to be edited" do
+	    should "allow an existing group to be edited" do
 	    	@group1.homeroom = "Pool Pavillion"
 	    	assert @group1.valid?
 	    end
 	    
-	    should "have a scope to order groups by number" do
-	    	assert_equal [@group1, @group2, @group3, @group4, @group5], Group.by_number
+	    should "have a scope to order groups by name" do
+	    	assert_equal [@group1, @group2, @group3, @group4, @office], Group.by_name
 	    end
 
 
 	    should "have a scope to get group for rotation" do
-	    	assert_equal [@group1, @group2], Group.for_rotation(1).by_number
-	    	assert_equal [@group3, @group4], Group.for_rotation(2).by_number
-	    	assert_equal [@group5], Group.for_rotation(3)
+	    	assert_equal [@group1, @group2], Group.for_rotation(1).by_name
+	    	assert_equal [@group3, @group4], Group.for_rotation(2).by_name
+	    	assert_equal [@office], Group.for_rotation(3)
 	    end
 
 	end

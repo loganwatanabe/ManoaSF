@@ -23,9 +23,6 @@ class YummyTummyDayOrder < ActiveRecord::Base
 	validates_presence_of :participant_id
 	validates_numericality_of :participant_id, :only_integer => true, :greater_than => 0
 
-	# probably don't even need total_cost attribute, could do method
-	validates_numericality_of :total_cost, :only_integer => false, :greater_than => 0, :allow_nil => true
-
 
 
 

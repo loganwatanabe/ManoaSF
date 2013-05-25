@@ -26,7 +26,7 @@ class ContactTest < ActiveSupport::TestCase
 	  should_not allow_value(3.14).for(:participant_id)
   
 
-  context "Creating a group context" do
+  context "Creating a contact context" do
 	    setup do 
 	      create_leader_context
 	      create_group_context

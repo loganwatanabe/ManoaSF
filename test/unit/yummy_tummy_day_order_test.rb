@@ -19,18 +19,6 @@ class YummyTummyDayOrderTest < ActiveSupport::TestCase
 	  should_not allow_value(nil).for(:participant_id)
 	  should_not allow_value(-1).for(:participant_id)
 	  should_not allow_value(3.14).for(:participant_id)
-
-
-
-	  #test cost
-	  should validate_numericality_of(:total_cost)
-	  should allow_value(1).for(:total_cost)
-	  should allow_value(4.50).for(:total_cost)
-	  should allow_value(3.14).for(:total_cost)
-	  should allow_value(6.25).for(:total_cost)
-	  should allow_value(nil).for(:total_cost)
-	  should_not allow_value(0).for(:total_cost)
-	  should_not allow_value(-1).for(:total_cost)
   
 
   context "Creating a yummy tummy context" do
@@ -50,11 +38,6 @@ class YummyTummyDayOrderTest < ActiveSupport::TestCase
 	      remove_participant_context
 	      remove_yummy_tummy_day_order_context
 	      remove_order_context
-	    end
-
-		should "calculate total cost on update" do
-			#change this when you put in orders
-	    	# assert_equal nil, @tim_ytd.total_cost
 	    end
 	    
 	# scope :for_participant, lambda {|participant_id| where("participant_id = ?", participant_id) }

@@ -53,7 +53,7 @@ class OrderTest < ActiveSupport::TestCase
 	  should_not allow_value(3.14).for(:quantity)
 
 
- context "Creating a yummy tummy context" do
+ context "Creating a order context" do
 	    setup do 
 	      create_meal_context
 	      create_leader_context

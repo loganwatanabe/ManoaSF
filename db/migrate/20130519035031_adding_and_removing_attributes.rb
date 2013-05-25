@@ -11,7 +11,6 @@ class AddingAndRemovingAttributes < ActiveRecord::Migration
     remove_column :contacts, :phone_2
     remove_column :contacts, :phone_2_type
     remove_column :yummy_tummy_day_orders, :total_cost
-    #remove_column :model, :attribute_to_be_removed
   end
 
 end

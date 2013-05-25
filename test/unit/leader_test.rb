@@ -94,7 +94,7 @@ class LeaderTest < ActiveSupport::TestCase
 	    	assert_equal [@nick, @bt, @logan], Leader.males.alphabetical
 	    end
 
-	    should "have a scope to order by age" do
+	    should "have a scope to get females" do
 	    	assert_equal [@monica, @jp], Leader.females.alphabetical
 	    end
 

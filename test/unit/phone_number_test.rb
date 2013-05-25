@@ -71,7 +71,7 @@ class PhoneNumberTest < ActiveSupport::TestCase
 	    # @eric_aunty_1 = FactoryGirl.create(:phone_number, contact: @eric_aunty, phone: "8089876546", type: "cell")
 
 	    should "have a scope to order phone numbers by type" do
-	    	assert_equal ["cell", "cell", "cell", "cell", "home", "home", "home", "work", "work"], PhoneNumber.by_type.map{|p| p.phone_phone_type}
+	    	assert_equal ["cell", "cell", "cell", "cell", "home", "home", "home", "work", "work"], PhoneNumber.by_type.map{|p| p.phone_type}
 	    end
 
 	    should "have a scope to get phone numbers for a contact" do

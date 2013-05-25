@@ -62,7 +62,7 @@ class ParticipantTest < ActiveSupport::TestCase
 
   
 
-  context "Creating a group context" do
+  context "Creating a participant context" do
 	    setup do 
 	      create_leader_context
 	      create_group_context
@@ -178,7 +178,7 @@ class ParticipantTest < ActiveSupport::TestCase
 	    	assert_equal [@oren], Participant.for_group(@office).alphabetical
 	    end
 
-	    should "have a scope to order alphabetically" do
+	    should "have a scope to get based on gender" do
 	    	assert_equal [@adam, @benny, @eric, @oren, @sam, @timmy, @yi, @zach], Participant.males.alphabetical
 	    	assert_equal [@annie, @betty, @gina], Participant.females.alphabetical
 	    end
@@ -204,7 +204,7 @@ class ParticipantTest < ActiveSupport::TestCase
 	    	assert_equal [@adam, @annie, @benny, @betty, @eric, @timmy], Participant.children.alphabetical
 	    end
 
-	    should "have a scope to order by age" do
+	    should "have a scope to get junior leaders only" do
 	    	assert_equal [@gina, @oren, @sam, @yi, @zach], Participant.juniors.alphabetical
 	    end
 

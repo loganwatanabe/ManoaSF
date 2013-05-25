@@ -1,18 +1,21 @@
 class Participant < ActiveRecord::Base
-  attr_accessible :date_of_birth, :first_name, :grade, :group_id, :last_name, :nickname, :notes, :role
+  attr_accessible :date_of_birth, :first_name, :grade, :group_id, :last_name, :nickname, :notes, :role, :school, :gender, :active
 
 
   	scoped_search :on => [:first_name, :last_name, :nickname]
 	#callbacks
 
+	#gender, school, active
 
 
 	#relationships
 	belongs_to :group
 	#belongs_to :leader, :through => :group
 	has_many :contacts
+	has_many :phone_numbers, :through => :contacts ########
 	has_one :yummy_tummy_day_order
 	has_many :orders, :through => :yummy_tummy_day_order
+	has_many :absences##########
 
 
 
@@ -34,7 +37,7 @@ class Participant < ActiveRecord::Base
 	#validations
 	ROLES = [['Child', :child],['Junior Leader', :junior]]
 
-	validates_presence_of :first_name, :last_name, :role #date_of_birth
+	validates_presence_of :first_name, :last_name, :role, :gender
   	validates_date :date_of_birth, :on_or_before => lambda { 3.years.ago }, :on_or_before_message => "must be at least 3 years old"
   	validates_numericality_of :grade, :only_integer => true, :greater_than_or_equal_to => 0, :less_than => 13
 	validates_inclusion_of :role, :in => %w[child junior], :message => "is not recognized by the system"

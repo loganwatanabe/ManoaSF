@@ -1,9 +1,8 @@
 class YummyTummyDayOrder < ActiveRecord::Base
-  attr_accessible :participant_id, :total_cost
+  attr_accessible :participant_id
 
 
 	#callbacks
-	# before_update :calculate_total_cost
 
 
 	#relationships
@@ -55,17 +54,6 @@ class YummyTummyDayOrder < ActiveRecord::Base
 	end
 
 	private
-
-	# def calculate_total_cost
-	# 	cost_array = self.orders.map{|o| o.cost}
-	# 	unless cost_array.empty?
-	# 		self.total_cost = cost_array.inject{|sum, i| sum + i}
-	# 		self.total_cost.save!
-	# 	else
-	# 		self.total_cost = nil
-	# 		self.total_cost.save!
-	# 	end
-	# end
 
 
 end

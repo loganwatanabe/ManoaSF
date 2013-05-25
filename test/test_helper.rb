@@ -13,11 +13,11 @@ class ActiveSupport::TestCase
  
    # Context for leaders
   def create_leader_context
-    @logan = FactoryGirl.create(:leader)
+    @logan = FactoryGirl.create(:leader, date_of_birth: 20.years.ago.to_date)
     @nick = FactoryGirl.create(:leader, first_name: "Nick", last_name: "Deng", date_of_birth: 23.years.ago.to_date, specialty: "Music", phone: "8081234567")
-    @monica = FactoryGirl.create(:leader, first_name: "Monica", last_name: "Foolsey", date_of_birth: 26.years.ago.to_date, specialty: "Arts & Crafts", phone: "8085550011")
+    @monica = FactoryGirl.create(:leader, first_name: "Monica", last_name: "Foolsey", date_of_birth: 26.years.ago.to_date, specialty: "Arts & Crafts", phone: "8085550011", female: true)
     @bt = FactoryGirl.create(:leader, first_name: "Bryce", last_name: "Tomato", nickname: "BT", date_of_birth: 29.years.ago.to_date, specialty: "Fitness", phone: "8081116969")
-    @jp = FactoryGirl.create(:leader, first_name: "Justin", last_name: "Perrigo", nickname: "JP", date_of_birth: 18.years.ago.to_date, specialty: "Sports & Games", phone: "8086431111")
+    @jp = FactoryGirl.create(:leader, first_name: "Janice", last_name: "Perrigo", nickname: "JP", date_of_birth: 18.years.ago.to_date, specialty: "Sports & Games", phone: "8086431111", female: true)
   end
   
   def remove_leader_context
@@ -30,11 +30,11 @@ class ActiveSupport::TestCase
 
     # Context for group
   def create_group_context
-    @group1=FactoryGirl.create(:group, :number => 1, :leader => @monica)
-    @group4=FactoryGirl.create(:group, :number => 4, :leader => @logan, :rotation => 2)
-    @group2=FactoryGirl.create(:group, :number => 2, :leader => @jp)
-    @group5=FactoryGirl.create(:group, :number => 5, :leader => @nick, :rotation => 3)
-    @group3=FactoryGirl.create(:group, :number => 3, :leader => @bt, :rotation => 2)
+    @group1=FactoryGirl.create(:group, :name => "Group 1", :leader => @monica)
+    @group4=FactoryGirl.create(:group, :name => "Group 4", :leader => @logan, :rotation => 2)
+    @group2=FactoryGirl.create(:group, :name => "Group 2", :leader => @jp)
+    @office=FactoryGirl.create(:group, :name => "Office", :leader => @nick, :rotation => 3)
+    @group3=FactoryGirl.create(:group, :name => "Group 3", :leader => @bt, :rotation => 2)
 
   end
   
@@ -62,7 +62,7 @@ class ActiveSupport::TestCase
     @gina = FactoryGirl.create(:participant, role: 'junior', first_name: "Gina", last_name: "Goldberg", date_of_birth: 12.years.ago.to_date, grade: 7, group: @group3)
     @zach = FactoryGirl.create(:participant, role: 'junior', first_name: "Zach", last_name: "Zoidberg", date_of_birth: 15.years.ago.to_date, grade: 10, group: @group1)
     @sam = FactoryGirl.create(:participant, role: 'junior', first_name: "Sam", last_name: "Sampson", date_of_birth: 16.years.ago.to_date, grade: 10, group: @group4)
-    @oren = FactoryGirl.create(:participant, role: 'junior', first_name: "Oren", last_name: "Ogletree", date_of_birth: 18.years.ago.to_date, grade: 11, group: @group5)
+    @oren = FactoryGirl.create(:participant, role: 'junior', first_name: "Oren", last_name: "Ogletree", date_of_birth: 18.years.ago.to_date, grade: 11, group: @office)
 
 
 

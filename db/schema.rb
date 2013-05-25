@@ -11,23 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511150001) do
+ActiveRecord::Schema.define(:version => 20130524022324) do
+
+  create_table "absences", :force => true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "participant_id"
+    t.string   "reason"
+    t.integer  "days_gone"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "contacts", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "participant_id"
     t.string   "relation"
-    t.string   "phone_1"
-    t.string   "phone_1_type"
-    t.string   "phone_2"
-    t.string   "phone_2_type"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
 
   create_table "groups", :force => true do |t|
-    t.integer  "number"
     t.integer  "min_grade"
     t.integer  "max_grade"
     t.integer  "min_age"
@@ -37,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20130511150001) do
     t.integer  "rotation"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "name"
   end
 
   create_table "leaders", :force => true do |t|
@@ -49,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20130511150001) do
     t.string   "specialty"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.boolean  "female"
   end
 
   create_table "meals", :force => true do |t|
@@ -80,6 +87,17 @@ ActiveRecord::Schema.define(:version => 20130511150001) do
     t.integer  "grade"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.boolean  "female"
+    t.string   "school"
+    t.boolean  "active"
+  end
+
+  create_table "phone_numbers", :force => true do |t|
+    t.string   "phone"
+    t.string   "type"
+    t.integer  "contact_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -93,7 +111,6 @@ ActiveRecord::Schema.define(:version => 20130511150001) do
 
   create_table "yummy_tummy_day_orders", :force => true do |t|
     t.integer  "participant_id"
-    t.float    "total_cost"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end

@@ -17,6 +17,8 @@ class LeaderTest < ActiveSupport::TestCase
 
   should allow_value("Allergic to pineapple").for(:notes)
 
+  should_not allow_value(nil).for(:female)
+
   
   # tests for phone
   should allow_value("4122683259").for(:phone)
@@ -61,6 +63,11 @@ class LeaderTest < ActiveSupport::TestCase
 	    should "have working proper_name method" do 
 	      assert_equal "Logan Watanabe", @logan.proper_name
 	    end
+
+	    should "have working gender method" do 
+	      assert_equal "Male", @logan.gender
+	      assert_equal "Female", @monica.gender
+	    end	    
 	    
 	    should "have working age method" do 
 	      assert_equal 20, @logan.age
@@ -81,6 +88,14 @@ class LeaderTest < ActiveSupport::TestCase
 
 	    should "have a scope to order by age" do
 	    	assert_equal [@bt, @monica, @nick, @logan, @jp], Leader.by_age
+	    end
+
+	    should "have a scope to get males" do
+	    	assert_equal [@nick, @bt, @logan], Leader.males.alphabetical
+	    end
+
+	    should "have a scope to order by age" do
+	    	assert_equal [@monica, @jp], Leader.females.alphabetical
 	    end
 
 	end

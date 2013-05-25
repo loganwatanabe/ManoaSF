@@ -1,4 +1,10 @@
 SummerFun::Application.routes.draw do
+  resources :absences
+
+
+  resources :phone_numbers
+
+
   resources :orders
 
 

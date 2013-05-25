@@ -8,12 +8,13 @@ FactoryGirl.define do
     notes nil
     phone "808-497-7749"
     specialty "fitness"
+    female false
 
   end
   
   factory :group do
     association :leader
-    number 1
+    name "Group1"
     max_age nil
     max_grade nil
     min_age nil
@@ -31,22 +32,20 @@ FactoryGirl.define do
     grade 4
     notes nil
     role 'child'
+    gender
+    school
+    active true
   end
   
   factory :contact do
     first_name "Herbet"
     last_name "Toddler"
     association :participant
-    phone_1 "8085550123"
-    phone_1_type "home"
-    phone_2 "8089990123"
-    phone_2_type "cell"
     relation "Father"
   end
 
   factory :yummy_tummy_day_order do
     association :participant
-    total_cost nil
   end
   
   factory :meal do
@@ -71,4 +70,14 @@ FactoryGirl.define do
     username "logan"
 
   end
+
+  factory :phone_number do
+
+
+  end
+
+  factory :absence do
+
+  end
+
 end

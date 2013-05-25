@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-  attr_accessible :homeroom, :leader_id, :max_age, :max_grade, :min_age, :min_grade, :number, :rotation
+  attr_accessible :homeroom, :leader_id, :max_age, :max_grade, :min_age, :min_grade, :name, :rotation
 
 
 
@@ -14,14 +14,13 @@ class Group < ActiveRecord::Base
 
 
 	#scopes
-	scope :by_number, order('number')
+	scope :by_name, order('name')
 	scope :for_rotation, lambda{|rotation| where("rotation = ? ", rotation) }
 
 
 	#validations
-	validates_presence_of :number
+	validates_presence_of :name
   	validates_numericality_of :leader_id, :only_integer => true, :greater_than => 0, :allow_nil => true
-  	validates_numericality_of :number, :only_integer => true, :greater_than_or_equal_to => 0, :less_than => 18
   	validates_numericality_of :rotation, :only_integer => true, :greater_than => 0
 
   		#this should only be used for checking children, not junior leaders [possibly unecessary]

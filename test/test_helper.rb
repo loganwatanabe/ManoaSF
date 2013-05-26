@@ -242,9 +242,19 @@ class ActiveSupport::TestCase
 
       # Context for absences
   def create_absence_context
+    @tim_absence_1 = FactoryGirl.create(:absence, participant: @timmy, start_date: Date.today.to_date, end_date: 5.days.from_now.to_date, days_gone: 4 )
+    @tim_absence_2 = FactoryGirl.create(:absence, participant: @timmy, start_date: 2.weeks.from_now.to_date , end_date: 3.weeks.from_now.to_date, days_gone: 7 )
+    @gina_absence = FactoryGirl.create(:absence, participant: @gina, start_date: Date.today.to_date, end_date: 2.weeks.from_now.to_date, days_gone: nil)
+    @zach_absence = FactoryGirl.create(:absence, participant: @zach, start_date: 1.day.from_now.to_date, end_date: 1.day.from_now.to_date, days_gone: 1 )
+    @annie_absence = FactoryGirl.create(:absence, participant: @annie, start_date: 2.days.ago.to_date, end_date: 2.days.from_now.to_date, days_gone:  4)
   end
   
   def remove_absence_context
+    @tim_absence_1.destroy
+    @tim_absence_2.destroy
+    @gina_absence.destroy
+    @zach_absence.destroy
+    @annie_absence.destroy
   end
 
       # Context for users

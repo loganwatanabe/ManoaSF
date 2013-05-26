@@ -78,7 +78,11 @@ FactoryGirl.define do
   end
 
   factory :absence do
-
+    association :participant
+    start_date 2.weeks.from_now.to_date
+    end_date 3.weeks.from_now.to_date
+    reason "Arbitrary reason"
+    days_gone 7
   end
 
 end

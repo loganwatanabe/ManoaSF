@@ -1,6 +1,16 @@
-<h1>Editing meal</h1>
 
-<%= render 'form' %>
+<%= simple_form_for @meal, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Meal</legend>
+     <%= f.input :food, :required => true %>
+     <%= f.input :date, :order => [:month, :day, :year], :start_year => Date.today.year-1, :end_year => Date.today.year, :use_month_numbers => false, :include_blank => true, :required => true %>
+     <%= f.input :cost, :required => true %>
 
-<%= link_to 'Show', @meal %> |
-<%= link_to 'Back', meals_path %>
+
+		<div class="form-actions">
+		  <%= f.submit "Update Meal", :class => 'btn btn-primary' %>
+		  <%= link_to 'Cancel', meals_path, :class => 'btn' %>
+		</div>
+
+  </fieldset>
+<% end %>

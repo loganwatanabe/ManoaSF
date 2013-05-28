@@ -2,11 +2,6 @@ SummerFun::Application.routes.draw do
 
   root :to => "home#index"
   
-  get "home/index"
-
-  get "home/_sidebar"
-
-  get "home/error_page"
 
   resources :absences
   resources :phone_numbers
@@ -32,7 +27,6 @@ SummerFun::Application.routes.draw do
   match 'search' => 'participant#search', :as => :search
 
   #routes for ytd
-  match 'ytd' => 'yummy_tummy_day_orders_path', :as => :ytd
 
 
 end

@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
 
 
   def index
-    @groups = Group.by_name.paginate(:page => params[:page]).per_page(20)
+    @groups = Group.alphabetical.paginate(:page => params[:page]).per_page(20)
 
   end
 

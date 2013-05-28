@@ -1,25 +1,7 @@
-<h1>Listing yummy_tummy_day_orders</h1>
+<h3>The Yummy Tummy Day System</h3>
 
-<table>
-  <tr>
-    <th>Participant</th>
-    <th>Total cost</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @yummy_tummy_day_orders.each do |yummy_tummy_day_order| %>
-  <tr>
-    <td><%= yummy_tummy_day_order.participant_id %></td>
-    <td><%= yummy_tummy_day_order.total_cost %></td>
-    <td><%= link_to 'Show', yummy_tummy_day_order %></td>
-    <td><%= link_to 'Edit', edit_yummy_tummy_day_order_path(yummy_tummy_day_order) %></td>
-    <td><%= link_to 'Destroy', yummy_tummy_day_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Yummy tummy day order', new_yummy_tummy_day_order_path %>
+First, you need to input all of the Yummy Tummy Day meals with the button below.  Note, you need to do separate entries for different food items (ie one for ham and one for turkey subway sandwhiches).
+<br>
+<%= link_to 'YTD Meals', meals_path, :class => 'btn btn-info' %>
+<br>

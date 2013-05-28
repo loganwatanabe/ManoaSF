@@ -1,37 +1,13 @@
-<h1>Listing participants</h1>
+<h3> Manoa Summer Fun Participants</h3>
 
-<table>
-  <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Nickname</th>
-    <th>Role</th>
-    <th>Group</th>
-    <th>Date of birth</th>
-    <th>Notes</th>
-    <th>Grade</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h4> Children </h4>
 
-<% @participants.each do |participant| %>
-  <tr>
-    <td><%= participant.first_name %></td>
-    <td><%= participant.last_name %></td>
-    <td><%= participant.nickname %></td>
-    <td><%= participant.role %></td>
-    <td><%= participant.group_id %></td>
-    <td><%= participant.date_of_birth %></td>
-    <td><%= participant.notes %></td>
-    <td><%= participant.grade %></td>
-    <td><%= link_to 'Show', participant %></td>
-    <td><%= link_to 'Edit', edit_participant_path(participant) %></td>
-    <td><%= link_to 'Destroy', participant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+        <div id="table_display">
+          <%= render :partial => 'table_show', :locals => {:participants => @children} %>
+        </div>
 
-<br />
+<h4> Junior Leaders </h4>
 
-<%= link_to 'New Participant', new_participant_path %>
+        <div id="table_display">
+          <%= render :partial => 'table_show', :locals => {:participants => @juniors} %>
+        </div>

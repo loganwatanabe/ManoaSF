@@ -7,15 +7,15 @@
      <%= f.input :nickname %>
      <%= f.input :last_name, :required => true %>
      <%= f.input :female, :as => :select, :collection => [["Male", false], ["Female", true]], :label => "Gender" %>
-     <%= f.input :date_of_birth,:as => :date, :order => [:month, :day, :year], :start_year => Date.today.year - 85, :end_year => Date.today.year - 15, :use_month_numbers => false, :include_blank => true, :required => true %>
+     <%= f.input :date_of_birth,:as => :date, :order => [:month, :day, :year], :start_year => Date.today.year - 85, :end_year => Date.today.year - 15, :use_month_numbers => false, :include_blank => true %>
      <%= f.input :specialty %>
      <%= f.input :phone %>
      <%= f.input :notes %>
 
 
 		<div class="form-actions">
-		  <%= f.submit "Create Leader", :class => 'btn btn-primary' %>
-		  <%= link_to 'Cancel', leaders_path, :class => 'btn' %>
+		  <%= f.submit "Create Participant", :class => 'btn btn-primary' %>
+		  <%= link_to 'Cancel', participants_path, :class => 'btn' %>
 		</div>
 
   </fieldset>

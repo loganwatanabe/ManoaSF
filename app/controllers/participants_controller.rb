@@ -2,13 +2,19 @@ class ParticipantsController < ApplicationController
   # GET /participants
   # GET /participants.json
   def index
-    @participants = Participant.all
+    @participants = Participant.alphabetical
+    @children = Participant.children.alphabetical.paginate(:page => params[:page]).per_page(20)
+    @juniors = Participant.juniors.alphabetical.paginate(:page => params[:page]).per_page(20)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @participants }
-    end
   end
+
+  def children
+    @children = Participant.children.alphabetical.paginate(:page => params[:page]).per_page(20)
+  end
+
+  def junior_leaders
+    @juniors = Participant.juniors.alphabetical.paginate(:page => params[:page]).per_page(20)
+  end   
 
   # GET /participants/1
   # GET /participants/1.json
@@ -25,11 +31,7 @@ class ParticipantsController < ApplicationController
   # GET /participants/new.json
   def new
     @participant = Participant.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @participant }
-    end
+    @groups = Group.alphabetical
   end
 
   # GET /participants/1/edit

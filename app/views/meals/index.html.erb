@@ -1,29 +1,32 @@
-<h1>Listing meals</h1>
+<h3> YTD Meals </h3>
 
-<table>
+<table class="table table-striped">
   <tr>
     <th>Food</th>
     <th>Date</th>
     <th>Cost</th>
-    <th>Number</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Amount Ordered</th>
   </tr>
 
 <% @meals.each do |meal| %>
   <tr>
-    <td><%= meal.food %></td>
-    <td><%= meal.date %></td>
-    <td><%= meal.cost %></td>
-    <td><%= meal.number %></td>
-    <td><%= link_to 'Show', meal %></td>
-    <td><%= link_to 'Edit', edit_meal_path(meal) %></td>
-    <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to meal.food, meal_path(meal) %></td>
+    <td><%= date_format(meal.date) %></td>
+    <td><%= price_format(meal.cost) %></td>
+    <td><%= meal.meals_ordered %></td>
   </tr>
 <% end %>
+
+<% if @meals.empty? %>
+    <tr>
+        <td colspan = "4">
+            No meals
+        </td>
+    </tr>
+<% end %>
+
 </table>
 
-<br />
-
-<%= link_to 'New Meal', new_meal_path %>
+<span class="smtext">
+<%= will_paginate @meals, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>

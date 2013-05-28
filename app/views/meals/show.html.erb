@@ -1,4 +1,5 @@
-<p id="notice"><%= notice %></p>
+
+<h2> Meal Page </h2>
 
 <p>
   <b>Food:</b>
@@ -7,19 +8,16 @@
 
 <p>
   <b>Date:</b>
-  <%= @meal.date %>
+  <%= date_format(@meal.date) %>
 </p>
 
 <p>
   <b>Cost:</b>
-  <%= @meal.cost %>
-</p>
-
-<p>
-  <b>Number:</b>
-  <%= @meal.number %>
+  <%= price_format(@meal.cost) %>
 </p>
 
 
-<%= link_to 'Edit', edit_meal_path(@meal) %> |
-<%= link_to 'Back', meals_path %>
+  <p><!--Functionality buttons-->
+    <%= link_to 'Edit', edit_meal_path(@meal), :class => 'btn btn-info' %>
+    <%= link_to 'Delete Meal', meal_path(@meal), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  </p>

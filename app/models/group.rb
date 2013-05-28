@@ -14,7 +14,7 @@ class Group < ActiveRecord::Base
 
 
 	#scopes
-	scope :by_name, order('name')
+	scope :alphabetical, order('name')
 	scope :for_rotation, lambda{|rotation| where("rotation = ? ", rotation) }
 
 

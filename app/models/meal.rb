@@ -49,9 +49,22 @@ class Meal < ActiveRecord::Base
 			end
 		end
 		meals
-
-
 	end
+
+	def meals_ordered  ####### TEST THIS
+		orders = Order.for_meal(self.id)
+		order_quantities = orders.map{|o| o.quantity}
+		unless order_quantities.empty?
+			return order_quantities.inject{|sum, i| sum + i}
+		else
+			return nil
+		end
+	end
+
+
+
+
+	#callback to calculate number via date??
 
 
 

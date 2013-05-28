@@ -1,5 +1,5 @@
 class YummyTummyDayOrder < ActiveRecord::Base
-  attr_accessible :participant_id
+  attr_accessible :participant_id, :order_attributes
 
 
 	#callbacks
@@ -10,6 +10,9 @@ class YummyTummyDayOrder < ActiveRecord::Base
 	has_many :orders
 	has_many :meals, :through => :orders
 
+
+	#for nested forms
+	accepts_nested_attributes_for :orders, :reject_if => lambda { |order| order[:quantity] == 0 or order[:quantity].blank? }, :allow_destroy => true
 
 	#scopes
 	scope :alphabetical, joins(:participant).order('last_name, first_name')
@@ -28,7 +31,7 @@ class YummyTummyDayOrder < ActiveRecord::Base
 
 	#methods
 
-	def calculate_total_cost
+	def total_cost
 		cost_array = self.orders.map{|o| o.cost}
 		unless cost_array.empty?
 			return cost_array.inject{|sum, i| sum + i}

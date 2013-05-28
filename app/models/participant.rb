@@ -1,11 +1,13 @@
 class Participant < ActiveRecord::Base
-  attr_accessible :date_of_birth, :first_name, :grade, :group_id, :last_name, :nickname, :notes, :role, :school, :female, :active
+  attr_accessible :date_of_birth, :first_name, :grade, :group_id, :last_name, :nickname, :notes, :role, :school, :female, :active, :contact_attributes, :absence_attributes, :yummy_tummy_day_order_attributes
 
 
+  	#stuff for functionality
   	scoped_search :on => [:first_name, :last_name, :nickname]
 	#callbacks
 
 	#active has no use yet, just set it to nil
+
 
 
 	#relationships
@@ -17,6 +19,11 @@ class Participant < ActiveRecord::Base
 	has_many :orders, :through => :yummy_tummy_day_order
 	has_many :absences
 
+
+	#for nested forms
+	accepts_nested_attributes_for :contacts, :reject_if => lambda { |contact| contact[:first_name].blank? }, :allow_destroy => true
+	accepts_nested_attributes_for :absences, :reject_if => lambda { |absence| absence[:start_date].blank? }, :allow_destroy => true
+	accepts_nested_attributes_for :yummy_tummy_day_order, :reject_if => lambda { |ytd| ytd.total_cost <= 0 }, :allow_destroy => true
 
 
 	#scopes

@@ -1,5 +1,5 @@
 class Contact < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :participant_id, :relation
+  attr_accessible :first_name, :last_name, :participant_id, :relation, :phone_number_attributes
 
 
 	#callbacks
@@ -8,6 +8,9 @@ class Contact < ActiveRecord::Base
 	#relationships
 	belongs_to :participant
 	has_many :phone_numbers####
+
+	#for nested forms
+	accepts_nested_attributes_for :phone_numbers, :reject_if => lambda { |phone_number| phone_number[:phone].blank? }, :allow_destroy => true
 
 	#scopes
 	scope :for_participant, lambda {|participant_id| where("participant_id = ?", participant_id) }

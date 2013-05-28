@@ -1,13 +1,22 @@
 module ApplicationHelper
 
 
+  def price_format(price)
+      if price.nil?
+        "No price"
+      else
+       num = sprintf("%.2f",price)
+       return "$#{num}"
+      end 
+  end
+
 	def date_format(date)
     	if date.nil?
       	"No date"
     	else
      	 date.strftime("%m/%d/%y")
     	end 
-  	end
+  end
 
 
   def phone_name(phone)     #formats phone numbers nicely

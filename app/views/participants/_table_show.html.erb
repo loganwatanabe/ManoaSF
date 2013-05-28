@@ -1,0 +1,18 @@
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Group</th>
+    <th>Gender</th>
+  </tr>
+
+  <% participants.each do |p| %>
+    <tr>
+      <td><%= link_to p.name, participant_path(p) %></td>
+      <td><%= link_to p.group.name, group_path(p.group) %></td>
+      <td><%= p.gender %></td>
+    </tr>
+  <% end %>
+</table>
+<span class="smtext">
+<%= will_paginate participants, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>

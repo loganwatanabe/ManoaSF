@@ -91,11 +91,11 @@ class YummyTummyDayOrderTest < ActiveSupport::TestCase
 	    end
 
 	    should "have a method to get total cost of a YTD" do
-	    	assert_equal 21.00, @tim_ytd.calculate_total_cost
-	    	assert_equal 25.00, @annie_ytd.calculate_total_cost
-	    	assert_equal 14.50, @eric_ytd.calculate_total_cost
-	    	assert_equal 13.50, @gina_ytd.calculate_total_cost
-	    	assert_equal 42.00, @zach_ytd.calculate_total_cost
+	    	assert_equal 21.00, @tim_ytd.total_cost
+	    	assert_equal 25.00, @annie_ytd.total_cost
+	    	assert_equal 14.50, @eric_ytd.total_cost
+	    	assert_equal 13.50, @gina_ytd.total_cost
+	    	assert_equal 42.00, @zach_ytd.total_cost
 	    end
 
 

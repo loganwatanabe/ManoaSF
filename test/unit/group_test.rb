@@ -83,7 +83,7 @@ class GroupTest < ActiveSupport::TestCase
 	    end
 	    
 	    should "have a scope to order groups by name" do
-	    	assert_equal [@group1, @group2, @group3, @group4, @office], Group.by_name
+	    	assert_equal [@group1, @group2, @group3, @group4, @office], Group.alphabetical
 	    end
 
 

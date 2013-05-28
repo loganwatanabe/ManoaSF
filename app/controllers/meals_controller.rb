@@ -2,12 +2,8 @@ class MealsController < ApplicationController
   # GET /meals
   # GET /meals.json
   def index
-    @meals = Meal.all
+    @meals = Meal.chronological.alphabetical.paginate(:page => params[:page]).per_page(20)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @meals }
-    end
   end
 
   # GET /meals/1

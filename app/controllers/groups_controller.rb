@@ -1,44 +1,31 @@
 class GroupsController < ApplicationController
-  # GET /groups
-  # GET /groups.json
-  def index
-    @groups = Group.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @groups }
-    end
+
+  def index
+    @groups = Group.by_name.paginate(:page => params[:page]).per_page(20)
+
   end
 
-  # GET /groups/1
-  # GET /groups/1.json
   def show
     @group = Group.find(params[:id])
+    @children = @group.children
+    @juniors = @group.juniors
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @group }
-    end
   end
 
-  # GET /groups/new
-  # GET /groups/new.json
+
   def new
     @group = Group.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @group }
-    end
+    @leaders = Leader.alphabetical
   end
 
-  # GET /groups/1/edit
+
   def edit
     @group = Group.find(params[:id])
   end
 
-  # POST /groups
-  # POST /groups.json
+
+
   def create
     @group = Group.new(params[:group])
 
@@ -53,8 +40,8 @@ class GroupsController < ApplicationController
     end
   end
 
-  # PUT /groups/1
-  # PUT /groups/1.json
+
+
   def update
     @group = Group.find(params[:id])
 
@@ -69,8 +56,7 @@ class GroupsController < ApplicationController
     end
   end
 
-  # DELETE /groups/1
-  # DELETE /groups/1.json
+
   def destroy
     @group = Group.find(params[:id])
     @group.destroy

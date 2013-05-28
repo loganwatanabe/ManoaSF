@@ -1,28 +1,17 @@
-<p id="notice"><%= notice %></p>
+
+<h2> Group Page </h2>
 
 <p>
-  <b>Number:</b>
-  <%= @group.number %>
+  <b>Name:</b>
+  <%= @group.name %>
 </p>
 
-<p>
-  <b>Min grade:</b>
-  <%= @group.min_grade %>
-</p>
 
 <p>
-  <b>Max grade:</b>
-  <%= @group.max_grade %>
-</p>
-
-<p>
-  <b>Min age:</b>
-  <%= @group.min_age %>
-</p>
-
-<p>
-  <b>Max age:</b>
-  <%= @group.max_age %>
+  <b>Leader:</b>
+  <% unless @group.leader.nil? %>
+  <%= link_to @group.leader.name, leader_path(@group.leader) %>
+  <% end %>
 </p>
 
 <p>
@@ -30,16 +19,54 @@
   <%= @group.homeroom %>
 </p>
 
-<p>
-  <b>Leader:</b>
-  <%= @group.leader_id %>
-</p>
-
-<p>
-  <b>Rotation:</b>
-  <%= @group.rotation %>
-</p>
+  <p><!--Functionality buttons-->
+    <%= link_to 'Edit', edit_group_path(@group), :class => 'btn btn-info' %>
+    <%= link_to 'Delete Group', group_path(@group), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  </p>
 
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<h3>Children</h3>
+
+<table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+      </tr>
+
+      <% @children.each do |child| %>
+        <tr>
+          <td><%= link_to child.name, participant_path(child) %></td>
+          <td><%= child.age %></td>
+          <td><%= child.gender %></td>
+        </tr>
+          
+      <% end %>
+      <% if @children.empty? %>
+        <tr><td colspan = "3"> No children </td></tr>
+      <% end %>
+    </table>
+
+
+
+<h3>Junior Leaders</h3>
+
+<table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+      </tr>
+
+      <% @juniors.each do |junior| %>
+        <tr>
+          <td><%= link_to junior.name, participant_path(junior) %></td>
+          <td><%= junior.age %></td>
+          <td><%= junior.gender %></td>
+        </tr>
+          
+      <% end %>
+      <% if @juniors.empty? %>
+        <tr><td colspan = "3"> No junior leaders </td></tr>
+      <% end %>
+    </table>

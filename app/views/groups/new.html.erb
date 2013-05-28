@@ -1,5 +1,22 @@
-<h1>New group</h1>
 
-<%= render 'form' %>
 
-<%= link_to 'Back', groups_path %>
+<%= simple_form_for @group, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Group</legend>
+     <%= f.input :name, :required => true %>
+     <%= f.association :leader,:as => :select, :collection => @leaders, :required => false %>
+     <%= f.input :homeroom %>
+     <%= f.hidden_field :rotation, :value => nil %>
+     <%= f.hidden_field :min_age, :value => nil %>
+     <%= f.hidden_field :max_age, :value => nil %>
+     <%= f.hidden_field :min_grade, :value => nil %>
+     <%= f.hidden_field :max_grade, :value => nil %>
+
+
+		<div class="form-actions">
+		  <%= f.submit "Create Group", :class => 'btn btn-primary' %>
+		  <%= link_to 'Cancel', groups_path, :class => 'btn' %>
+		</div>
+
+  </fieldset>
+<% end %>

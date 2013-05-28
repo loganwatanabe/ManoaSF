@@ -1,37 +1,37 @@
-<h1>Listing groups</h1>
+<h3>Groups</h3>
 
-<table>
+<table class="table table-striped">
   <tr>
-    <th>Number</th>
-    <th>Min grade</th>
-    <th>Max grade</th>
-    <th>Min age</th>
-    <th>Max age</th>
-    <th>Homeroom</th>
+    <th>Name</th>
     <th>Leader</th>
-    <th>Rotation</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Children</th>
+    <th>Junior Leaders</th>
   </tr>
 
 <% @groups.each do |group| %>
   <tr>
-    <td><%= group.number %></td>
-    <td><%= group.min_grade %></td>
-    <td><%= group.max_grade %></td>
-    <td><%= group.min_age %></td>
-    <td><%= group.max_age %></td>
-    <td><%= group.homeroom %></td>
-    <td><%= group.leader_id %></td>
-    <td><%= group.rotation %></td>
-    <td><%= link_to 'Show', group %></td>
-    <td><%= link_to 'Edit', edit_group_path(group) %></td>
-    <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to group.name, group_path(group) %></td>
+    <td>  <% unless group.leader.nil? %> 
+        <%= link_to group.leader.name, leader_path(group.leader) %>
+        <% end %>
+    </td>
+    <td><%= group.children.size %></td>
+    <td><%= group.juniors.size %></td>
   </tr>
 <% end %>
+
+<% if @groups.empty? %>
+    <tr>
+        <td colspan = "4">
+            No groups
+        </td>
+    </tr>
+<% end %>
+
 </table>
 
-<br />
+<span class="smtext">
+<%= will_paginate @groups, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
 
-<%= link_to 'New Group', new_group_path %>
+

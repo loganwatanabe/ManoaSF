@@ -68,11 +68,13 @@ class GroupTest < ActiveSupport::TestCase
 	    setup do 
 	      create_leader_context
 	      create_group_context
+        create_participant_context
 	    end
 	    
 	    teardown do
 	      remove_leader_context
 	      remove_group_context
+        remove_participant_context
 	    end
 
 	    should "allow an existing group to be edited" do
@@ -90,6 +92,18 @@ class GroupTest < ActiveSupport::TestCase
 	    	assert_equal [@group3, @group4], Group.for_rotation(2).by_name
 	    	assert_equal [@office], Group.for_rotation(3)
 	    end
+
+
+      should "have method to get array of children" do
+        assert_equal [@annie, @benny], @group2.children
+        assert_equal [@betty, @timmy], @group3.children
+        assert_equal [], @office.children
+      end
+
+      should "have method to get array of juniors" do
+        assert_equal [@zach], @group1.juniors
+        assert_equal [@oren], @office.juniors
+      end
 
 	end
 

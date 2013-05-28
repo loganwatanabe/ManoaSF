@@ -21,7 +21,7 @@ class Group < ActiveRecord::Base
 	#validations
 	validates_presence_of :name
   	validates_numericality_of :leader_id, :only_integer => true, :greater_than => 0, :allow_nil => true
-  	validates_numericality_of :rotation, :only_integer => true, :greater_than => 0
+  	validates_numericality_of :rotation, :only_integer => true, :greater_than => 0, :allow_nil => true
 
   		#this should only be used for checking children, not junior leaders [possibly unecessary]
 	validates_numericality_of :min_grade, :only_integer => true, :greater_than_or_equal_to => 0, :allow_nil => true
@@ -31,6 +31,17 @@ class Group < ActiveRecord::Base
 
 
 	#methods
+
+	# TEST THESE
+	def children
+		kids = Participant.for_group(self.id).children.alphabetical
+		kids
+	end
+
+	def juniors
+		jr = Participant.for_group(self.id).juniors.alphabetical
+		jr
+	end
 
 	#get all meals for a group
 

@@ -1,35 +1,29 @@
-<h1>Listing leaders</h1>
+<h3>Leaders</h3>
 
-<table>
+<table class="table table-striped">
   <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Nickname</th>
-    <th>Date of birth</th>
-    <th>Notes</th>
-    <th>Phone</th>
+    <th>Name</th>
+    <th>Group</th>
     <th>Specialty</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @leaders.each do |leader| %>
   <tr>
-    <td><%= leader.first_name %></td>
-    <td><%= leader.last_name %></td>
-    <td><%= leader.nickname %></td>
-    <td><%= leader.date_of_birth %></td>
-    <td><%= leader.notes %></td>
-    <td><%= leader.phone %></td>
+    <td><%= link_to leader.name, leader_path(leader) %></td>
+    <td>  <% unless leader.group.nil? %> 
+        <%= link_to leader.group.name, group_path(leader.group) %>
+        <% end %>
+    </td>
     <td><%= leader.specialty %></td>
-    <td><%= link_to 'Show', leader %></td>
-    <td><%= link_to 'Edit', edit_leader_path(leader) %></td>
-    <td><%= link_to 'Destroy', leader, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+
+<% if @leaders.empty? %>
+    <tr>
+        <td colspan = "3">
+            No leaders
+        </td>
+    </tr>
+<% end %>
+
 </table>
-
-<br />
-
-<%= link_to 'New Leader', new_leader_path %>

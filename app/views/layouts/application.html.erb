@@ -25,6 +25,7 @@
             	</p>
             	<ul class = "nav">
             		<li><%= link_to "Groups", groups_path %></li>
+            		<li><%= link_to "Leaders", leaders_path %></li>
             		<li><%= link_to "Keiki", children_path %></li>
             		<li><%= link_to "JRL", junior_leaders_path %></li>
             		<li><%= link_to "YTD", ytd_path %></li>
@@ -49,22 +50,23 @@
 
     <!-- MAIN CONTENT -->
 
-    <!-- ALERTS -->
-
-      <% flash.each do |name, msg| %>
-      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-        <a class="close" data-dismiss="alert">x</a>
-          <%= msg %>
-      </div>
-         <% end %>
-
-    <!-- Page specific content loaded -->
 
         <div class="span9">
-          <div id="main_content">
-           <%= yield %>
-          </div>
-        </div>
+
+		<!-- ALERTS -->
+		      <% flash.each do |name, msg| %>
+		      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+		        <a class="close" data-dismiss="alert">x</a>
+		          <%= msg %>
+		      </div>
+		         <% end %>
+
+
+	    <!-- Page specific content loaded -->
+	          <div id="main_content">
+	           <%= yield %>
+	          </div>
+		</div>
 
       </div>
 

@@ -1,40 +1,49 @@
-<p id="notice"><%= notice %></p>
+<h2> Leader Page </h2>
 
 <p>
-  <b>First name:</b>
-  <%= @leader.first_name %>
+  <b>Name:</b>
+  <% if @leader.nickname.blank? %>
+  <%= @leader.name %>
+  <% else %>
+  <%= "#{@leader.name} (#{@leader.nickname})" %>
+  <% end %>
+</p>
+
+
+<p>
+  <b>Group:</b>
+  <% unless @leader.group.nil? %>
+  <%= link_to @leader.group.name, group_path(@leader.group) %>
+  <% end %>
 </p>
 
 <p>
-  <b>Last name:</b>
-  <%= @leader.last_name %>
+  <b>Date Of Birth:</b>
+  <%= date_format(@leader.date_of_birth) %>
 </p>
 
 <p>
-  <b>Nickname:</b>
-  <%= @leader.nickname %>
+  <b>Age: </b>
+  <%= @leader.age %>
 </p>
 
 <p>
-  <b>Date of birth:</b>
-  <%= @leader.date_of_birth %>
+  <b>Gender: </b>
+  <%= @leader.gender %>
 </p>
 
 <p>
-  <b>Notes:</b>
+  <b>Phone: </b>
+  <%= phone_name(@leader.phone) %>
+</p>
+
+<p>
+  <b>Notes: </b>
   <%= @leader.notes %>
 </p>
 
-<p>
-  <b>Phone:</b>
-  <%= @leader.phone %>
-</p>
 
-<p>
-  <b>Specialty:</b>
-  <%= @leader.specialty %>
-</p>
-
-
-<%= link_to 'Edit', edit_leader_path(@leader) %> |
-<%= link_to 'Back', leaders_path %>
+  <p><!--Functionality buttons-->
+    <%= link_to 'Edit', edit_leader_path(@leader), :class => 'btn btn-info' %>
+    <%= link_to 'Delete Group', leader_path(@leader), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  </p>

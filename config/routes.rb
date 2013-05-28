@@ -24,6 +24,7 @@ SummerFun::Application.routes.draw do
   #routes for home views
   match 'home' => 'home#index', :as => :home
   match 'error_page' => 'home#error_page', :as => :error
+  match 'calendar' => 'home#calendar', :as => :calendar
 
   #routes for participants
   match 'junior_leaders' => 'participants#junior_leaders', :as => :junior_leaders

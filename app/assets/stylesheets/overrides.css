@@ -1,9 +1,28 @@
+
+
+
+/*LAYOUT OVERRIDES*/
+
 body { 
      padding-top: 60px; /*lowers all body by 60px*/
      font-size: 12px;
      /*background-color: #E6E6E6;*/
 } 
 
-.custom > li > a:hover {
-    background-color: blue;
+.brand:hover{
+	background-color: #2ECCFA;
+	color: #000000;
+}
+
+.user-link:visited{
+	color: #E1E1E1;
+}
+
+.user-link:hover{
+	color: black;
+	background-color: #2ECCFA;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+background-color: #2ECCFA;
 }

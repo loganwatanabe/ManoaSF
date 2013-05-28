@@ -1,5 +1,6 @@
 SummerFun::Application.routes.draw do
 
+  root :to => "home#index"
   
   get "home/index"
 
@@ -19,7 +20,6 @@ SummerFun::Application.routes.draw do
   resources :participants
   resources :home
 
-  root :to => "home#index"
 
   #routes for home views
   match 'home' => 'home#index', :as => :home

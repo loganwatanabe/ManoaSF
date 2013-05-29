@@ -1,5 +1,5 @@
 class Participant < ActiveRecord::Base
-  attr_accessible :date_of_birth, :first_name, :grade, :group_id, :last_name, :nickname, :notes, :role, :school, :female, :active, :contact_attributes, :absence_attributes, :yummy_tummy_day_order_attributes
+  attr_accessible :date_of_birth, :first_name, :grade, :group_id, :last_name, :nickname, :notes, :role, :school, :female, :active, :contacts_attributes, :absences_attributes, :yummy_tummy_day_orders_attributes
 
 
   	#stuff for functionality

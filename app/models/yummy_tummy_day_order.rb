@@ -1,5 +1,5 @@
 class YummyTummyDayOrder < ActiveRecord::Base
-  attr_accessible :participant_id, :order_attributes
+  attr_accessible :participant_id, :orders_attributes
 
 
 	#callbacks

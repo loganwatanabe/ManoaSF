@@ -34,9 +34,9 @@ class ParticipantsController < ApplicationController
     @groups = Group.alphabetical
     @meals = Meal.chronological.alphabetical
 
-    #contact = @participant.build_contacts
-    #absence = @participant.build_absences
-    #yummy_tummy_day_order = @participant.build_yummy_tummy_day_order
+    @participant.contacts.build
+    @participant.absences.build
+    @participant.build_yummy_tummy_day_order
   end
 
   # GET /participants/1/edit

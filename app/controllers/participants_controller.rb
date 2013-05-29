@@ -31,11 +31,11 @@ class ParticipantsController < ApplicationController
   # GET /participants/new.json
   def new
     @participant = Participant.new
+    @participant.absences.build
     @groups = Group.alphabetical
     @meals = Meal.chronological.alphabetical
 
     @participant.contacts.build
-    @participant.absences.build
     @participant.build_yummy_tummy_day_order
   end
 

@@ -21,12 +21,12 @@
       <legend>Participant Contacts</legend>
       <div id="contact_form">
         
-        <%= f.simple_fields_for :contact do |contact| %>
+        <%= f.simple_fields_for :contacts do |contact| %>
 
                 <%= contact.hidden_field :participant_id, :value => @participant.id %>
                 <%= contact.input :first_name, :required => false %>
                 <%= contact.input :last_name, :required => false %>
-                <%= contact.input :relationship, :label => "Relation to Participant", :required => false%>
+                <%= contact.input :relation, :label => "Relation to Participant", :required => false%>
                 
                 <!-- Phone numbers for contact -->
             <%= contact.simple_fields_for :phone_number do |phone_number| %>
@@ -48,11 +48,11 @@
     <legend>Absences?</legend>
       <div id="absence_form">
         
-        <%= f.simple_fields_for :absence do |absence| %>
+        <%= f.simple_fields_for :absences do |absence| %>
 
                 <%= absence.hidden_field :participant_id, :value => @participant.id %>
-                <%= absence.input :start_date, :required => false %>
-                <%= absence.input :end_date, :required => false %>
+                <%= absence.input :start_date, :as => :date, :order => [:month, :day, :year], :start_year => Date.today.year, :end_year => Date.today.year, :use_month_numbers => false, :include_blank => true, :required => false %>
+                <%= absence.input :end_date, :as => :date, :order => [:month, :day, :year], :start_year => Date.today.year, :end_year => Date.today.year, :use_month_numbers => false, :include_blank => true, :required => false  %>
                 <%= absence.input :reason, :required => false,  :label => "Reason for Absence"%>
             
         <% end %>
@@ -66,7 +66,7 @@
       <!-- YTD Order NESTED form -->
     <legend>YTD Order Form</legend>
       <div id="ytd_form">
-        <%= f.simple_fields_for :yummy_tummy_day_orders do |ytd| %>
+        <%= f.simple_fields_for :yummy_tummy_day_order do |ytd| %>
                 <%= ytd.hidden_field :participant_id, :value => @participant.id %>
 
                 <!-- order nested forms-->

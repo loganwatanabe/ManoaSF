@@ -26,3 +26,12 @@ body {
 .nav > li > a:hover, .nav > li > a:focus {
 background-color: #2ECCFA;
 }
+
+
+
+
+
+/* for the participant new page */
+.order-box{
+	width: 30px;
+}

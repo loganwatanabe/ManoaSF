@@ -32,6 +32,11 @@ class ParticipantsController < ApplicationController
   def new
     @participant = Participant.new
     @groups = Group.alphabetical
+    @meals = Meal.chronological.alphabetical
+
+    #contact = @participant.build_contacts
+    #absence = @participant.build_absences
+    #yummy_tummy_day_order = @participant.build_yummy_tummy_day_order
   end
 
   # GET /participants/1/edit

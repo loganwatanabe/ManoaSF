@@ -16,10 +16,10 @@ class Order < ActiveRecord::Base
 	#scopes
 	scope :not_delivered, where('delivered = ?', false)
 	scope :was_delivered, where('delivered = ?', true)
-	scope :by_date, joins(:meal).order('date')
+	scope :chronological, joins(:meal).order('date')
 	scope :by_participant, joins(:participant).order('last_name, first_name')
 	scope :by_number, joins(:meal).order('number')
-	scope :by_food, joins(:meal).order('food')
+	scope :alphabetical, joins(:meal).order('food')
 	scope :for_meal, lambda{|meal_id| where("meal_id = ?", meal_id )}
 	scope :for_ytd, lambda{|yummy_tummy_day_order_id| where("yummy_tummy_day_order_id = ?", yummy_tummy_day_order_id)}
 

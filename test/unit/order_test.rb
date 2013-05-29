@@ -111,7 +111,7 @@ class OrderTest < ActiveSupport::TestCase
     end
 
     should "have a scope to sort orders alphabetically by food" do
-    	assert_equal ["Apples", "Apples", "Apples", "Apples", "Cheese Pizza", "Cheese Pizza", "Chicken", "Chicken", "Chicken", "Chicken", "Chicken", "Chicken Musubi", "Chicken Musubi", "Chicken Nuggets", "Chicken Nuggets", "Chicken Nuggets", "Hamburger", "Hamburger", "Spam Musubi", "Spam Musubi", "Spam Musubi", "Supreme Pizza", "Supreme Pizza", "Supreme Pizza"], Order.by_food.map{|o| o.meal.food}
+    	assert_equal ["Apples", "Apples", "Apples", "Apples", "Cheese Pizza", "Cheese Pizza", "Chicken", "Chicken", "Chicken", "Chicken", "Chicken", "Chicken Musubi", "Chicken Musubi", "Chicken Nuggets", "Chicken Nuggets", "Chicken Nuggets", "Hamburger", "Hamburger", "Spam Musubi", "Spam Musubi", "Spam Musubi", "Supreme Pizza", "Supreme Pizza", "Supreme Pizza"], Order.alphabetical.map{|o| o.meal.food}
     end
 
     should "have a scope to get orders for a ytd" do
@@ -131,7 +131,7 @@ class OrderTest < ActiveSupport::TestCase
     end
 
     should "have a scope to get orders by date" do
-    	assert_equal ["Apples", "Apples", "Apples", "Apples", "Cheese Pizza", "Cheese Pizza", "Supreme Pizza", "Supreme Pizza", "Supreme Pizza", "Chicken Nuggets", "Chicken Nuggets", "Chicken Nuggets", "Hamburger", "Hamburger", "Chicken", "Chicken", "Chicken", "Chicken", "Chicken", "Chicken Musubi", "Chicken Musubi", "Spam Musubi", "Spam Musubi", "Spam Musubi"], Order.by_date.by_food.map{|o| o.meal.food}
+    	assert_equal ["Apples", "Apples", "Apples", "Apples", "Cheese Pizza", "Cheese Pizza", "Supreme Pizza", "Supreme Pizza", "Supreme Pizza", "Chicken Nuggets", "Chicken Nuggets", "Chicken Nuggets", "Hamburger", "Hamburger", "Chicken", "Chicken", "Chicken", "Chicken", "Chicken", "Chicken Musubi", "Chicken Musubi", "Spam Musubi", "Spam Musubi", "Spam Musubi"], Order.chronological.alphabetical.map{|o| o.meal.food}
     end
 
 

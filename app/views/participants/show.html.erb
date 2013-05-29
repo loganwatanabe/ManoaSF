@@ -1,45 +1,132 @@
-<p id="notice"><%= notice %></p>
+<h2> Participant Page </h2>
 
 <p>
-  <b>First name:</b>
-  <%= @participant.first_name %>
+  <b>Name:</b>
+  <% if @participant.nickname.blank? %>
+  <%= @participant.name %>
+  <% else %>
+  <%= "#{@participant.name} (#{@participant.nickname})" %>
+  <% end %>
 </p>
 
 <p>
-  <b>Last name:</b>
-  <%= @participant.last_name %>
-</p>
-
-<p>
-  <b>Nickname:</b>
-  <%= @participant.nickname %>
-</p>
-
-<p>
-  <b>Role:</b>
+  <b> Role: </b>
   <%= @participant.role %>
 </p>
 
 <p>
+  <b>Gender: </b>
+  <%= @participant.gender %>
+</p>
+
+<p>
   <b>Group:</b>
-  <%= @participant.group_id %>
+  <%= link_to @participant.group.name, group_path(@participant.group) %>
 </p>
 
 <p>
-  <b>Date of birth:</b>
-  <%= @participant.date_of_birth %>
+  <b>Date Of Birth:</b>
+  <%= date_format(@participant.date_of_birth) %>
 </p>
 
 <p>
-  <b>Notes:</b>
+  <b>Age: </b>
+  <%= @participant.age %>
+</p>
+
+<p>
+  <b>Grade: </b>
+  <%= grade_format(@participant.grade) %>
+</p>
+
+<p>
+  <b>School: </b>
+  <%= @participant.school %>
+</p>
+
+<p>
+  <b>Notes: </b>
   <%= @participant.notes %>
 </p>
 
-<p>
-  <b>Grade:</b>
-  <%= @participant.grade %>
-</p>
+  <!--Contact Information -->
+  <legend>Contact Information</legend>
+
+  <% @contacts.each do |contact|%>
+      <p>
+      <b>Name:</b>
+      <%= @contact.name %>
+    </p>
+
+    <p>
+      <b> Relation: </b>
+      <%= @contact.relation %>
+    </p>
+
+        <% contact.phone_numbers.each do |phone|%>
+        <p>
+          <b> <%= phone.type.capitalize %> Phone </b>
+          <%= phone.phone %>
+        </p>
+        <% end %>
+
+  <% end %>
 
 
-<%= link_to 'Edit', edit_participant_path(@participant) %> |
-<%= link_to 'Back', participants_path %>
+
+
+  <!--Absences-->
+  <% unless @absences.empty? %>
+    <legend>Absences</legend>
+
+    <% @absences.each do |absence|%>
+        <p>
+        <b>Reason:</b>
+        <%= absence.reason %>
+        </p>
+
+        <p>
+          <b> From: </b>
+          <%= date_format(absence.start_date) %>
+          <b> To: </b>
+          <%= date_format(absence.end_date) %>
+        </p>
+    <% end %>
+  <% end %>
+
+
+
+  <!--YTD Orders-->
+    <legend>YTD Order Form</legend>
+                    <table class="table table-striped">
+                      <tr><th>Food</th><th>Date</th><th>Cost</th><th>Quantity</th></tr>
+
+
+                      <% @orders.each do |order| %>
+                              <tr>
+                                <td><%= order.meal.food %></td>
+                                <td><%= date_format(order.meal.date) %></td>
+                                <td><%= price_format(order.meal.cost) %></td>
+                                <td><%= order.quantity %></td>
+                              </tr>
+                            <% end %>
+
+                            <% if @orders.empty? %>
+                                <tr>
+                                    <td colspan = "4">
+                                        No YTD order
+                                    </td>
+                                </tr>
+                            <% end %>
+
+                    </table>
+
+
+
+
+
+
+  <p><!--Functionality buttons-->
+    <%= link_to 'Edit', edit_participant_path(@participant), :class => 'btn btn-info' %>
+    <%= link_to 'Delete participant', participant_path(@participant), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  </p>

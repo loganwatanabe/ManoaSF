@@ -1,0 +1,129 @@
+
+<%= simple_nested_form_for @participant, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Participant</legend>
+
+     <%= f.input :role, :required => true, :as => :select, :collection => [["Child", 'child'], ["Junior Leader", 'junior']] %>
+     <%= f.association :group, :required => true, :as => :select, :collection => @groups %>
+     <%= f.input :first_name, :required => true %>
+     <%= f.input :nickname %>
+     <%= f.input :last_name, :required => true %>
+     <%= f.input :female, :as => :select, :collection => [["Male", false], ["Female", true]], :label => "Gender", :required => true %>
+
+
+     <%= f.input :date_of_birth,:as => :date, :order => [:month, :day, :year], :start_year => Date.today.year - 30, :end_year => Date.today.year, :use_month_numbers => false, :include_blank => true, :required => false %>
+
+     <%= f.input :grade, :as => :select, :collection => [["K", 0], ["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10], ["11", 11], ["12", 12]] %>
+     <%= f.input :school %>
+     <%= f.input :notes %>
+
+     <!--nested form for contacts-->
+      <legend>Participant Contacts</legend>
+      <div id="contact_form">
+        
+        <%= f.simple_fields_for :contacts do |contact| %>
+
+                <%= contact.hidden_field :participant_id, :value => @participant.id %>
+                <%= contact.input :first_name, :required => false %>
+                <%= contact.input :last_name, :required => false %>
+                <%= contact.input :relation, :label => "Relation to Participant", :required => false%>
+                
+                <!-- Phone numbers for contact -->
+            <%= contact.simple_fields_for :phone_number do |phone_number| %>
+
+                <%# phone_number.hidden_field :contact_id, :value => contact.id %>
+                <%= phone_number.input :phone, :required => false %>
+                <%= phone_number.input :type, :required => false, :as => :select, :collection => [['Home', :home],['Cellular', :cell],['Work', :work]] %>
+            <% end %>
+
+                
+        <% end %>
+        <p>
+          <%# f.link_to_add "Add Contact", :contacts %>
+          <%# f.link_to_add(raw("<i class='icon-plus icon-white'></i> Add Conact"), :contacts, :class => 'btn btn-mini btn-primary') %>
+        </p>
+      </div>
+
+      <!-- ABSENCE NESTED FORMS-->
+    <legend>Absences?</legend>
+      <div id="absence_form">
+        
+        <%= f.simple_fields_for :absences do |absence| %>
+
+                <%= absence.hidden_field :participant_id, :value => @participant.id %>
+                <%= absence.input :start_date, :as => :date, :order => [:month, :day, :year], :start_year => Date.today.year, :end_year => Date.today.year, :use_month_numbers => false, :include_blank => true, :required => false %>
+                <%= absence.input :end_date, :as => :date, :order => [:month, :day, :year], :start_year => Date.today.year, :end_year => Date.today.year, :use_month_numbers => false, :include_blank => true, :required => false  %>
+                <%= absence.input :reason, :required => false,  :label => "Reason for Absence"%>
+            
+        <% end %>
+        <p>
+          <%# contact.link_to_add "Add Contact", :contact %>
+          <%# f.link_to_add(raw("<i class='icon-plus icon-white'></i> Add Conact"), :contact, :class => 'btn btn-mini btn-primary') %>
+        </p>
+      </div>
+
+
+      <!-- YTD Order NESTED form -->
+    <legend>YTD Order Form</legend>
+      <div id="ytd_form">
+        <%= f.simple_fields_for :yummy_tummy_day_order do |ytd| %>
+                <%= ytd.hidden_field :participant_id, :value => @participant.id %>
+
+                <!-- order nested forms-->
+                <%= ytd.simple_fields_for :order do |order| %>
+
+                    <%# order.hidden_field :yummy_tummy_day_order_id, :value => ytd.id %>
+                    <table class="table table-striped">
+                      <tr><th>Food</th><th>Date</th><th>Cost</th><th>Quantity</th></tr>
+
+                      <% @meals.each do |meal| %>
+                              <%= order.hidden_field :meal_id, :value => meal.id %>
+                              <tr>
+                                <td><%= meal.food %></td>
+                                <td><%= date_format(meal.date) %></td>
+                                <td><%= price_format(meal.cost) %></td>
+                                <td><%= order.input :quantity, :label => false, :input_html => {:class => "order-box", :value => 0 } %></td>
+                              </tr>
+                            <% end %>
+
+                            <% if @meals.empty? %>
+                                <tr>
+                                    <td colspan = "4">
+                                        No meals
+                                    </td>
+                                </tr>
+                            <% end %>
+
+                    </table>
+
+                
+            
+                <% end %>  
+            
+        <% end %>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="form-actions">
+		  <%= f.submit "Update Participant", :class => 'btn btn-primary' %>
+		  <%= link_to 'Cancel', participants_path, :class => 'btn' %>
+		</div>
+
+  </fieldset>
+<% end %>

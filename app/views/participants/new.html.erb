@@ -29,11 +29,11 @@
                 <%= contact.input :relation, :label => "Relation to Participant", :required => false%>
                 
                 <!-- Phone numbers for contact -->
-            <%= contact.simple_fields_for :phone_number do |phone_number| %>
+            <%= contact.simple_fields_for :phone_numbers do |phone_number| %>
 
                 <%# phone_number.hidden_field :contact_id, :value => contact.id %>
                 <%= phone_number.input :phone, :required => false %>
-                <%= phone_number.input :type, :required => false, :as => :select, :collection => [['Home', :home],['Cellular', :cell],['Work', :work]] %>
+                <%= phone_number.input :phone_type, :required => false, :as => :select, :collection => [['Home', :home],['Cellular', :cell],['Work', :work]] %>
             <% end %>
 
                 

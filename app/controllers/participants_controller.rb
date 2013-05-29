@@ -21,10 +21,13 @@ class ParticipantsController < ApplicationController
   def show
     @participant = Participant.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @participant }
-    end
+    @contacts = Contact.for_participant(@participant)
+
+    @absences = Absence.for_participant(@participant)
+
+    @ytd = @participant.yummy_tummy_day_order
+    @orders = Order.chronological.alphabetical.for_ytd(@ytd)
+
   end
 
   # GET /participants/new
@@ -35,13 +38,16 @@ class ParticipantsController < ApplicationController
     @groups = Group.alphabetical
     @meals = Meal.chronological.alphabetical
 
-    @participant.contacts.build
+    contact = @participant.contacts.build
+    contact.phone_numbers.build
     @participant.build_yummy_tummy_day_order
   end
 
   # GET /participants/1/edit
   def edit
     @participant = Participant.find(params[:id])
+    #@ytd = @participant.yummy_tummy_day_order
+    #@orders = Order.for_ytd(@ytd).chronological.alphabetical
   end
 
   # POST /participants

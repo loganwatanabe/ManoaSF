@@ -1,5 +1,37 @@
 module ApplicationHelper
 
+  def grade_format(grade)
+        case
+        when grade == 0
+          "Kindergarten"
+        when grade == 1
+          "First Grade"
+        when grade == 2
+          "Second Grade"
+        when grade == 3
+          "Third Grade"
+        when grade == 4
+          "Fourth Grade"
+        when grade == 5
+          "Fifth Grade"
+        when grade == 6
+          "Sixth Grade"
+        when grade == 7
+          "Seventh Grade"
+        when grade == 8
+          "Eighth Grade"
+        when grade == 9
+          "Ninth Grade"
+        when grade == 10
+          "Tenth Grade"
+        when grade == 11
+          "Elventh Grade"
+        when grade == 12
+          "Twelfth Grade"
+        else
+          "None"
+        end
+  end
 
   def price_format(price)
       if price.nil?

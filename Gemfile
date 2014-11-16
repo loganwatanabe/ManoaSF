@@ -14,6 +14,7 @@ gem 'geocoder', '1.2.6'
 gem 'scoped_search', '2.7.1'
 # gem 'ferry'
 gem 'pg', '0.17.1'
+gem 'rails_12factor'
 
 # Gems used only in testing
 group :test do

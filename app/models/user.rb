@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   # Validations
   validates_uniqueness_of :username, :case_sensitive => false
   validates_uniqueness_of :email, :case_sensitive => false
-  validates_format_of :email, :with => /^[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))$/i, :message => "is not a valid format"
+  validates_format_of :email, :with => /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, :message => "is not a valid format"
   validates_inclusion_of :role, :in => %w[admin member], :message => "is not recognized by the system"
 
   #commented out because profH said it messes up the nested forms

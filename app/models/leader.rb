@@ -24,7 +24,7 @@ class Leader < ActiveRecord::Base
 	#validations
 	validates_presence_of :first_name, :last_name
  	validates_date :date_of_birth, :on_or_before => lambda { 16.years.ago }, :on_or_before_message => "must be at least 16 years old"
-  	validates_format_of :phone, :with => /^\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}$/, :message => "should be 10 digits (area code needed) and delimited with dashes only", :allow_blank => true
+  	validates_format_of :phone, :with => /\A\(?\d{3}\)?[-. ]?\d{3}[-.]?\d{4}\z/, :message => "should be 10 digits (area code needed) and delimited with dashes only", :allow_blank => true
 	validates_inclusion_of :female, :in => [true, false], :message => "must be true or false", :allow_nil => false
 
 

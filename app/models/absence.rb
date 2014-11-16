@@ -7,7 +7,7 @@ class Absence < ActiveRecord::Base
 
   #scopes
   scope :for_participant, lambda{|participant_id| where("participant_id = ?", participant_id) }
-  scope :chronological, order('start_date, end_date')
+  scope :chronological, lambda { order('start_date, end_date')}
 
   #validations
   validates_presence_of :participant_id, :start_date, :end_date

@@ -25,16 +25,16 @@ class Participant < ActiveRecord::Base
 
 
 	#scopes
-	scope :alphabetical, order('last_name, first_name')
-	scope :by_group, joins(:group).order('name')
+	scope :alphabetical, lambda { order('last_name, first_name')}
+	scope :by_group, lambda { joins(:group).order('name')}
 	scope :for_group, lambda {|group_id| where("group_id = ?", group_id) }
-	scope :by_age, order('date_of_birth')
-	scope :by_grade, order('grade')
+	scope :by_age, lambda { order('date_of_birth')}
+	scope :by_grade, lambda { order('grade')}
 	scope :for_grade, lambda {|grade| where("grade = ?", grade) }
-	scope :children, where('role = ?', 'child')
-	scope :juniors, where('role = ?', 'junior')
-	scope :females, where('female = ?', true)#######
-    scope :males, where('female = ?', false)########
+	scope :children, lambda { where('role = ?', 'child')}
+	scope :juniors, lambda { where('role = ?', 'junior')}
+	scope :females, lambda { where('female = ?', true) }
+    scope :males, lambda { where('female = ?', false) }
 
 	# 	#for search purposes
 	# scope :search, lambda { |term| where('first_name LIKE ? OR last_name LIKE ? OR nickname LIKE ?', "%#{term}%", "%#{term}%", "%#{term}%") }

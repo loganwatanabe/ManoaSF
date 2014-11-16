@@ -14,11 +14,11 @@ class YummyTummyDayOrder < ActiveRecord::Base
 	accepts_nested_attributes_for :orders, :reject_if => lambda { |order| order[:quantity] == 0 or order[:quantity].blank? }, :allow_destroy => true
 
 	#scopes
-	scope :alphabetical, joins(:participant).order('last_name, first_name')
+	scope :alphabetical, lambda { joins(:participant).order('last_name, first_name')}
 	scope :for_participant, lambda {|participant_id| where("participant_id = ?", participant_id) }
 	scope :for_group, lambda {|group_id| joins(:participant).where("group_id = ?", group_id) }
-	scope :children_orders, joins(:participant).where("role = ? ", "child")
-	scope :junior_orders, joins(:participant).where("role = ? ", "junior")
+	scope :children_orders, lambda { joins(:participant).where("role = ? ", "child")}
+	scope :junior_orders, lambda { joins(:participant).where("role = ? ", "junior")}
 
 
 	#validations

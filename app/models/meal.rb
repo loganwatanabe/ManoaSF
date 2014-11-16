@@ -15,14 +15,14 @@ class Meal < ActiveRecord::Base
 	#scopes
 
 	#number is just another way to group together meals delivered on the same day
-	scope :alphabetical, order('food')
-	scope :by_number, order('number')
+	scope :alphabetical, lambda { order('food')}
+	scope :by_number, lambda { order('number')}
 	scope :for_number, lambda {|number| where( "number = ? ", number) }
 	scope :for_date, lambda {|date| where( "date = ? ", date) }
 
-	scope :chronological, order('date')
-	scope :past, where('date < ?', Date.today)
-	scope :upcoming, where('date >= ?', Date.today)
+	scope :chronological, lambda { order('date')}
+	scope :past, lambda { where('date < ?', Date.today)}
+	scope :upcoming, lambda { where('date >= ?', Date.today)}
 
 
 	#validations

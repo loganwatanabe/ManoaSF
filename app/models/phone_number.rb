@@ -8,7 +8,7 @@ class PhoneNumber < ActiveRecord::Base
   has_one :participant, :through => :contact
 
   #scopes
-  scope :by_type, order("phone_type")
+  scope :by_type, lambda { order("phone_type")}
   scope :for_contact, lambda {|contact_id| where("contact_id = ?", contact_id) }
   scope :for_participant, lambda {|participant_id| joins(:contact).where("participant_id = ?", participant_id) }
   scope :for_type, lambda {|type| where("phone_type = ?", type) }

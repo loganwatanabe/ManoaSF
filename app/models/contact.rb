@@ -13,7 +13,7 @@ class Contact < ActiveRecord::Base
 
 	#scopes
 	scope :for_participant, lambda {|participant_id| where("participant_id = ?", participant_id) }
-	scope :alphabetical, order('last_name, first_name')
+	scope :alphabetical, lambda { order('last_name, first_name')}
 
 
 	#validations

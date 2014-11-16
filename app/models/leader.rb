@@ -13,11 +13,10 @@ class Leader < ActiveRecord::Base
 
 
 	#scopes
-	scope :alphabetical, order('last_name, first_name')
-	scope :by_age, order('date_of_birth')
-	scope :females, where('female = ?', true)#######
-    scope :males, where('female = ?', false)########
-
+	scope :alphabetical, lambda { order('last_name, first_name')}
+	scope :by_age, lambda { order('date_of_birth')}
+	scope :females, lambda { where('female = ?', true)}
+    scope :males, lambda { where('female = ?', false)}
 
 
 

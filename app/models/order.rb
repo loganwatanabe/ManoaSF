@@ -13,12 +13,12 @@ class Order < ActiveRecord::Base
 
 
 	#scopes
-	scope :not_delivered, where('delivered = ?', false)
-	scope :was_delivered, where('delivered = ?', true)
-	scope :chronological, joins(:meal).order('date')
-	scope :by_participant, joins(:participant).order('last_name, first_name')
-	scope :by_number, joins(:meal).order('number')
-	scope :alphabetical, joins(:meal).order('food')
+	scope :not_delivered, lambda { where('delivered = ?', false)}
+	scope :was_delivered, lambda { where('delivered = ?', true)}
+	scope :chronological, lambda { joins(:meal).order('date')}
+	scope :by_participant, lambda { joins(:participant).order('last_name, first_name')}
+	scope :by_number, lambda { joins(:meal).order('number')}
+	scope :alphabetical, lambda { joins(:meal).order('food')}
 	scope :for_meal, lambda{|meal_id| where("meal_id = ?", meal_id )}
 	scope :for_ytd, lambda{|yummy_tummy_day_order_id| where("yummy_tummy_day_order_id = ?", yummy_tummy_day_order_id)}
 

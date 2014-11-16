@@ -1,5 +1,4 @@
 class PhoneNumber < ActiveRecord::Base
-  attr_accessible :contact_id, :phone, :phone_type
 
   #callbacks
   before_save :reformat_phone

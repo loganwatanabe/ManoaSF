@@ -1,6 +1,5 @@
 class Contact < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :participant_id, :relation, :phone_numbers_attributes
-
+  
 
 	#callbacks
 

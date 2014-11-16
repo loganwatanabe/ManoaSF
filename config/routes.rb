@@ -13,18 +13,18 @@ SummerFun::Application.routes.draw do
   resources :contacts
   resources :leaders
   resources :participants
-  resources :home
+  # resources :home
 
 
   #routes for home views
-  match 'home' => 'home#index', :as => :home
-  match 'error_page' => 'home#error_page', :as => :error
-  match 'calendar' => 'home#calendar', :as => :calendar
+  get 'home', to: 'home#index', as: :home
+  get 'error_page', to: 'home#error_page', as: :error
+  get 'calendar', to: 'home#calendar', as: :calendar
 
   #routes for participants
-  match 'junior_leaders' => 'participants#junior_leaders', :as => :junior_leaders
-  match 'children' => 'participants#children', :as => :children
-  match 'search' => 'participant#search', :as => :search
+  get 'junior_leaders', to: 'participants#junior_leaders', as: :junior_leaders
+  get 'children', to: 'participants#children', as: :children
+  get 'search', to: 'participant#search', as: :search
 
   #routes for ytd
 

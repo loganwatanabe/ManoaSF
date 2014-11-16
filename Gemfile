@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
-gem 'sqlite3', '1.3.7'
 gem 'will_paginate', '3.0.4'
 gem 'validates_timeliness', '3.0.14'
 gem 'jquery-rails', '2.2.1'
@@ -41,7 +40,7 @@ group :development do
   gem 'meta_request', '0.2.2'
   gem 'wirble', '0.1.3'
   gem 'hirb', '0.7.1'
-  gem 'populator3', '0.2.7'
+  # gem 'populator3', '0.2.7'
   gem 'faker', '1.1.2'
 end
 

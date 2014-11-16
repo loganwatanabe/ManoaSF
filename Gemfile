@@ -12,7 +12,7 @@ gem 'chronic', '0.10.2'
 gem 'nested_form', '0.3.2'
 gem 'geocoder', '1.2.6'
 gem 'scoped_search', '2.7.1'
-gem 'ferry'
+# gem 'ferry'
 gem 'pg', '0.17.1'
 
 # Gems used only in testing

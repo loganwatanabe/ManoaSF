@@ -1,0 +1,5 @@
+id,first_name,last_name,nickname,date_of_birth,notes,phone,specialty,created_at,updated_at,female
+1,Nick,Deng,,1991-11-16,,8081234567,Music,2014-11-16 19:54:18.804916,2014-11-16 19:54:18.804916,f
+2,Monica,Foolsey,,1988-11-16,,8085550011,Arts & Crafts,2014-11-16 19:54:18.807610,2014-11-16 19:54:18.807610,t
+3,Bryce,Tomato,BT,1985-11-16,,8081116969,Fitness,2014-11-16 19:54:18.809510,2014-11-16 19:54:18.809510,f
+4,Janice,Perrigo,JP,1996-11-16,,8086431111,Sports & Games,2014-11-16 19:54:18.811233,2014-11-16 19:54:18.811233,t

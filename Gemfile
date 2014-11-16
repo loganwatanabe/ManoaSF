@@ -13,6 +13,7 @@ gem 'nested_form', :git => 'git://github.com/ryanb/nested_form.git'
 gem 'geocoder', '1.1.6'
 gem 'scoped_search'
 gem 'ferry'
+gem 'pg'
 
 # Gems used only in testing
 group :test do

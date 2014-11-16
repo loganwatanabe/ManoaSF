@@ -3,7 +3,7 @@
 This app is meant to be a demo for Manoa Summer Fun to see the capabilities a web app can have in aiding them.
 
 We can have this app do many things, but right now it can:
-  - Register Leaders, Junior Leaders, and Kids
-  - Record Yummy Tummy Day meal orders
-  - Other stuff
+- Register Leaders, Junior Leaders, and Kids
+- Record Yummy Tummy Day meal orders
+- Other stuff
 
